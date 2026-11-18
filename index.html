@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
   
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -627,33 +627,40 @@
   </div>
 
   <!-- ===================================================================
-       MODAL DE VÍDEO RÁPIDO DE TÉCNICA (LIMPIO Y SIN CONTROLES MOLESTOS)
+       MODAL DE VÍDEO DE TÉCNICA (YOUTUBE INTEGRADO CON CONTROLES + ACCESO DIRECTO)
        =================================================================== -->
   <div id="videoModal" class="modal-overlay">
     <div class="video-modal-content">
       <div class="video-modal-header">
-        <h3 id="videoModalExerciseName" class="video-modal-title">Ejercicio</h3>
+        <div class="video-modal-title-group">
+          <span class="video-modal-badge">🎬 Demostración Técnica Oficial</span>
+          <h3 id="videoModalExerciseName" class="video-modal-title">Ejercicio</h3>
+        </div>
         <button id="closeVideoModalBtn" class="video-modal-close" aria-label="Cerrar vídeo">✕</button>
       </div>
 
-      <!-- Barra de pestañas simple: Jose Perez o Guía -->
-      <div class="video-source-switcher">
-        <button id="btnTabDrive" class="video-source-tab active" type="button">🎬 Jose Perez</button>
-        <button id="btnTabYoutube" class="video-source-tab" type="button">📺 Guía alternativa</button>
-        <a id="btnOpenDriveDirect" class="video-direct-link-btn" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">↗️ Pantalla completa</a>
+      <!-- Reproductor: Iframe de YouTube con controles completos -->
+      <div id="videoPlayerWrapper" class="video-player-wrapper">
+        <iframe id="videoIframe" class="video-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
 
-      <!-- Reproductor: Vídeo nativo limpio en bucle sin barra de tiempo ni pausa -->
-      <div id="videoPlayerWrapper" class="video-player-wrapper">
-        <video id="videoNativePlayer" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; background: #000; display: block;"></video>
-        <iframe id="videoIframe" class="video-iframe" src="" allow="autoplay; fullscreen; encrypted-media" allowfullscreen style="display: none;"></iframe>
+      <!-- Barra de enlace directo a YouTube -->
+      <div class="video-modal-actions">
+        <a id="btnSearchOnYoutube" class="btn-yt-direct" href="#" target="_blank" rel="noopener noreferrer">
+          <svg class="yt-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span id="btnSearchOnYoutubeText">Ver tutorial de este ejercicio en YouTube</span>
+          <span class="yt-arrow">↗</span>
+        </a>
       </div>
 
       <!-- Indicación técnica y botón de cierre -->
       <div class="video-modal-footer">
-        <p id="videoModalNotes" class="video-modal-notes"></p>
-        <button id="closeVideoModalFooterBtn" class="btn-primary" style="width: 100%; margin-top: 8px;">
-          ✓ Listo
+        <div id="videoModalNotesCard" class="video-notes-card" style="display: none;">
+          <div class="notes-badge">💡 Pautas de Jose Perez:</div>
+          <p id="videoModalNotes" class="video-modal-notes"></p>
+        </div>
+        <button id="closeVideoModalFooterBtn" class="btn-primary" style="width: 100%; margin-top: 10px;">
+          ✓ Volver al entrenamiento
         </button>
       </div>
     </div>
@@ -938,7 +945,7 @@
     if ('caches' in window) {
       caches.keys().then(function(names) {
         for (var i = 0; i < names.length; i++) {
-          if (names[i] !== 'jperezcoach-v1') {
+          if (names[i] !== 'jperezcoach-v2') {
             caches.delete(names[i]);
           }
         }
@@ -947,11 +954,11 @@
   </script>
   <script src="lib/pdf.min.js"></script>
   <script src="lib/pdf.worker.min.js"></script>
-  <script src="ejercicios-db.js?v=1"></script>
-  <script src="routine-data.js?v=1"></script>
-  <script src="pdf-rutina-parser.js?v=1"></script>
-  <script src="rutinas-personalizadas.js?v=1"></script>
-  <script src="rutina-pdf-ui.js?v=1"></script>
-  <script src="app.js?v=1"></script>
+  <script src="ejercicios-db.js?v=2"></script>
+  <script src="routine-data.js?v=2"></script>
+  <script src="pdf-rutina-parser.js?v=2"></script>
+  <script src="rutinas-personalizadas.js?v=2"></script>
+  <script src="rutina-pdf-ui.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

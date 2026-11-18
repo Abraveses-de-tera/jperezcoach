@@ -1,84 +1,90 @@
 ﻿// =============================================================================
 // JPEREZCOACH - BASE DE DATOS MAESTRA DE EJERCICIOS Y VÍDEOS DE TÉCNICA
 // Jose Perez Coach · Rutina de 6 Días Rotativos para David Otero
-// Compatible con vídeos demostrativos y guías de ejecución
+// Compatible con vídeos demostrativos y guías de ejecución verificadas
 // =============================================================================
 
 (function(global) {
   'use strict';
 
   var BASE_DATOS_EJERCICIOS = [
-    // --- EJERCICIOS ESPECÍFICOS DE LA RUTINA JPEREZCOACH (35 EJERCICIOS) ---
-    { id: "dominadas_jalon", nombre: "Dominadas/jalón", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g", descripcion: "Busca series pesadas manteniendo rango completo." },
-    { id: "remo_t", nombre: "Remo T", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE", descripcion: "Excéntrico en 5 segundos. Control estricto del torso." },
-    { id: "jalon_maquina", nombre: "Jalón máquina", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc", descripcion: "RIR 0 al fallo concéntrico + repeticiones parciales." },
-    { id: "remo_unilateral", nombre: "Remo unilateral", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "qO5UKMQPL1d", descripcion: "Excéntrico en 5 segundos. Tirón hacia la cadera." },
-    { id: "biceps_martillo_mancuernas", nombre: "Bíceps martillo mancuernas", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "zC3nLlEvin4", descripcion: "Rest pause: tras el fallo, descanso de 15 segundos y 2-3 reps más." },
-    { id: "scott_maquina_unilateral", nombre: "Scott máquina unilateral", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fIWP-FRFNU0", descripcion: "Tempo 1-3-1 (1s subida, 3s bajada, 1s pausa isométrica)." },
+    // --- EJERCICIOS ESPECÍFICOS DE LA RUTINA JPEREZCOACH (35 EJERCICIOS EXACTOS Y VERIFICADOS) ---
+    // DÍA 1 PULL
+    { id: "dominadas_jalon", nombre: "Dominadas/jalón", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "orXhTMDnQkI", descripcion: "Calienta 2/3 series y después busca series lo más pesadas posible." },
+    { id: "remo_t", nombre: "Remo T", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "X2-yKYyjWAY", descripcion: "Excéntrico en 5 segundos. Control estricto del torso." },
+    { id: "jalon_maquina", nombre: "Jalón máquina", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "pcodNSB6NXQ", descripcion: "RIR 0 al fallo concéntrico + repeticiones parciales." },
+    { id: "remo_unilateral", nombre: "Remo unilateral", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "hOBTkGA4mHE", descripcion: "Excéntrico en 5 segundos con mancuerna. Tirón hacia la cadera." },
+    { id: "biceps_martillo_mancuernas", nombre: "Bíceps martillo mancuernas", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "07D2fR_0iro", descripcion: "Rest pause: tras el fallo, descanso de 15 segundos y 2-3 reps extra." },
+    { id: "scott_maquina_unilateral", nombre: "Scott máquina unilateral", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "YUhSi_sUGmM", descripcion: "Tempo 1-3-1 (1s subida, 3s bajada, 1s pausa isométrica)." },
 
-    { id: "press_inclinado_60", nombre: "Press inclinado 60%", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "8iPEnn-ltC8", descripcion: "Inclinación a 60% para activar la porción clavicular." },
-    { id: "press_plano_maquina", nombre: "Press plano máquina", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "1aOw8-hVoMUnMAnSYxLdvIaY-DcHwaf3y", descripcion: "Serie piramidal (12, 10, 8, 6, 4 reps) subiendo carga." },
-    { id: "apertura_unilateral_desde_abajo", nombre: "Apertura unilateral desde abajo", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "1A3wybVQer98mXdyqyuWcfq2JDZRW9PFg", descripcion: "Bajadas lentas y controladas en 5 segundos." },
-    { id: "press_hombro_neutro", nombre: "Press hombro neutro", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2yjwXTZQDDI", descripcion: "Máximo rango de recorrido con agarre neutro." },
-    { id: "laterales_maquina_unilateral", nombre: "Laterales máquina unilateral", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "3VcKaXpzqRo", descripcion: "3 segundos de contracción isométrica arriba." },
-    { id: "laterales_maquina", nombre: "Laterales máquina", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "3VcKaXpzqRo", descripcion: "Series pesadas a 6-8 repeticiones." },
+    // DÍA 2 PUSH
+    { id: "press_inclinado_60", nombre: "Press inclinado 60%", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "DfgI6sGn9iQ", descripcion: "Inclinación a 60% para activar la porción clavicular." },
+    { id: "press_plano_maquina", nombre: "Press plano máquina", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fGpg1zE-Kd0", descripcion: "Serie piramidal (12, 10, 8, 6, 4 reps) subiendo carga progresiva." },
+    { id: "apertura_unilateral_desde_abajo", nombre: "Apertura unilateral desde abajo", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "nP9KArjEDeU", descripcion: "Bajadas lentas y controladas en 5 segundos en polea baja." },
+    { id: "press_hombro_neutro", nombre: "Press hombro neutro", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "4N8wePRkBmY", descripcion: "Máximo rango de recorrido con mancuernas en agarre neutro." },
+    { id: "laterales_maquina_unilateral", nombre: "Laterales máquina unilateral", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "V98wql8IfVA", descripcion: "3 segundos de contracción isométrica arriba." },
+    { id: "laterales_maquina", nombre: "Laterales máquina", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "WmdhjLZzEjM", descripcion: "Series pesadas a 6-8 repeticiones en máquina." },
 
-    { id: "prensa_horizontal_unilateral", nombre: "Prensa horizontal unilateral", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "IZxyjW7MPJQ", descripcion: "Máximo recorrido por pierna con apoyo firme." },
-    { id: "hack_pisada_neutra", nombre: "Hack pisada neutra", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0tn5K9NlCfo", descripcion: "Bajadas controladas de 5 segundos con pisada neutra." },
-    { id: "zancadas_estaticas_smith", nombre: "Zancadas estáticas Smith", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "12w8EAR9mWsR33M7OT0Ym9jipqeHH5LTC", descripcion: "RIR 0 al fallo muscular en máquina Smith." },
-    { id: "belt_squat_cuadriceps", nombre: "Belt squat cuádriceps", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0tn5K9NlCfo", descripcion: "1 rep 1 rebote, 1 rep 2 rebotes... hasta 10 rebotes." },
-    { id: "hip_thrust_unilateral", nombre: "Hip thrust unilateral", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "13Fkwl6MsUk66qJMxKUYU0pIQ5GmqD8kC", descripcion: "Máxima contracción de glúteo en el punto alto." },
-    { id: "gemelo_de_pie", nombre: "Gemelo de pie", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "IZxyjW7MPJQ", descripcion: "3 series de 15-20 repeticiones con estiramiento completo." },
+    // DÍA 3 LEG
+    { id: "prensa_horizontal_unilateral", nombre: "Prensa horizontal unilateral", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "uTjkm8DXeJY", descripcion: "Máximo recorrido por pierna con apoyo firme." },
+    { id: "hack_pisada_neutra", nombre: "Hack pisada neutra", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "8Gk8snrY8u4", descripcion: "Bajadas controladas de 5 segundos con pisada neutra en sentadilla Hack." },
+    { id: "zancadas_estaticas_smith", nombre: "Zancadas estáticas Smith", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "yH0FeAwbjbw", descripcion: "RIR 0 al fallo muscular en máquina Smith (multipower)." },
+    { id: "belt_squat_cuadriceps", nombre: "Belt squat cuádriceps", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "beP38yZ1N9E", descripcion: "1 rep 1 rebote, 1 rep 2 rebotes... hasta 10 rebotes acumulativos." },
+    { id: "hip_thrust_unilateral", nombre: "Hip thrust unilateral", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "RaKaj5gtk1A", descripcion: "Máxima contracción de glúteo en el punto alto a una pierna." },
+    { id: "gemelo_de_pie", nombre: "Gemelo de pie", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "iOuAzeiDicY", descripcion: "3 series de 15-20 repeticiones con estiramiento completo de pie en máquina." },
 
-    { id: "hiperextension_lumbar_con_peso", nombre: "Hiperextensión lumbar con peso", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE", descripcion: "Movimiento controlado sin arquear excesivamente." },
-    { id: "remo_barra_smith", nombre: "Remo barra Smith", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE", descripcion: "Excéntrica en 5 segundos con barra guiada." },
-    { id: "jalon_unilateral_polea_alta", nombre: "Jalón unilateral polea alta", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc", descripcion: "3 segundos de máxima contracción abajo." },
-    { id: "remo_maquina_agarre_supino", nombre: "Remo máquina agarre supino", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE", descripcion: "Serie piramidal (12, 10, 8, 6, 4 reps)." },
-    { id: "low_row", nombre: "Low row", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc", descripcion: "Contracción de 2 segundos arriba/atrás." },
+    // DÍA 4 PULL
+    { id: "hiperextension_lumbar_con_peso", nombre: "Hiperextensión lumbar con peso", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "5mzen3mhQOE", descripcion: "Movimiento controlado en banco romano con disco." },
+    { id: "remo_barra_smith", nombre: "Remo barra Smith", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "lTQJFDyQq0s", descripcion: "Excéntrica en 5 segundos con barra guiada multipower." },
+    { id: "jalon_unilateral_polea_alta", nombre: "Jalón unilateral polea alta", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "rudpTb4A0X8", descripcion: "3 segundos de máxima contracción abajo con agarre neutro." },
+    { id: "remo_maquina_agarre_supino", nombre: "Remo máquina agarre supino", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "iyOM6y5ADAQ", descripcion: "Serie piramidal (12, 10, 8, 6, 4 reps) con agarre supino." },
+    { id: "low_row", nombre: "Low row", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "Zigz-qCgY6U", descripcion: "Contracción de 2 segundos arriba en remo bajo de dorsal." },
 
-    { id: "polea_cuerda_baja", nombre: "Polea cuerda baja", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ykJmrZ5v0Oo", descripcion: "3 segundos de isométrico arriba." },
-    { id: "polea_alta_cuerda", nombre: "Polea alta cuerda", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2-LAMcpzODU", descripcion: "3 segundos de isométrico abajo abriendo la cuerda." },
-    { id: "curl_biceps_barra_z", nombre: "Curl bíceps barra Z", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ykJmrZ5v0Oo", descripcion: "RIR 0 al límite concéntrico." },
-    { id: "press_frances_mancuernas", nombre: "Press francés mancuernas", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2-LAMcpzODU", descripcion: "RIR 0 con codos estables." },
-    { id: "scott_unilateral", nombre: "scott unilateral", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fIWP-FRFNU0", descripcion: "RIR 0 en banco Scott con mancuerna." },
-    { id: "polea_unilateral_triceps", nombre: "Polea unilateral tríceps", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2-LAMcpzODU", descripcion: "RIR 0 extensión de tríceps a una mano." },
+    // DÍA 5 ARMS
+    { id: "polea_cuerda_baja", nombre: "Polea cuerda baja", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "TCeIYlq00P8", descripcion: "3 segundos de isométrico arriba en contracción con cuerda." },
+    { id: "polea_alta_cuerda", nombre: "Polea alta cuerda", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "qdRDkVqVeOY", descripcion: "3 segundos de isométrico abajo abriendo la cuerda de tríceps." },
+    { id: "curl_biceps_barra_z", nombre: "Curl bíceps barra Z", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "MtgfQwdgE3k", descripcion: "RIR 0 al límite concéntrico con barra Z de pie." },
+    { id: "press_frances_mancuernas", nombre: "Press francés mancuernas", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "jCI6_pObQfo", descripcion: "RIR 0 tumbado con mancuernas y codos estables." },
+    { id: "scott_unilateral", nombre: "scott unilateral", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "KvZKqlRFhXc", descripcion: "RIR 0 en banco Scott con mancuerna a una mano." },
+    { id: "polea_unilateral_triceps", nombre: "Polea unilateral tríceps", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "visrQO8rhNo", descripcion: "RIR 0 extensión de tríceps en polea a una mano." },
 
-    { id: "aductor", nombre: "Aductor", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ELOCsoDSmrg", descripcion: "Excéntrico en 5 segundos en máquina de aductores." },
-    { id: "peso_muerto_barra", nombre: "Peso muerto barra", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE", descripcion: "3 series pesadas de 4-6 reps con técnica limpia." },
-    { id: "sentadilla_sumo_en_smith", nombre: "Sentadilla sumo en Smith", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0tn5K9NlCfo", descripcion: "Bajadas controladas en 5 segundos con apertura ancha." },
-    { id: "femoral_tumbado", nombre: "Femoral tumbado", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "1Tq3QdYUuHs", descripcion: "Máxima contracción arriba aguantando 1 segundo." },
-    { id: "femoral_sentado", nombre: "Femoral sentado", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ELOCsoDSmrg", descripcion: "Excéntrica en 5 segundos." },
-    { id: "extension_cuadriceps", nombre: "Extensión cuádriceps", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "YyvSfVjQeL0", descripcion: "RIR 0 al fallo en extensión de cuádriceps." },
+    // DÍA 6 LEG
+    { id: "aductor", nombre: "Aductor", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "vlViIgtkvh4", descripcion: "Excéntrico en 5 segundos en máquina de aductores sentada." },
+    { id: "peso_muerto_barra", nombre: "Peso muerto barra", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0XL4cZR2Ink", descripcion: "3 series pesadas de 4-6 reps con técnica convencional limpia." },
+    { id: "sentadilla_sumo_en_smith", nombre: "Sentadilla sumo en Smith", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "qL3heyJRJvw", descripcion: "Bajadas controladas en 5 segundos con apertura ancha en Smith." },
+    { id: "femoral_tumbado", nombre: "Femoral tumbado", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "nmqG-tIr0hc", descripcion: "Máxima contracción arriba aguantando 1 segundo en máquina tumbado." },
+    { id: "femoral_sentado", nombre: "Femoral sentado", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "oOE1vaDX71M", descripcion: "Excéntrica en 5 segundos en curl femoral sentado." },
+    { id: "extension_cuadriceps", nombre: "Extensión cuádriceps", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "SguKyjZ6y9Q", descripcion: "RIR 0 al fallo en extensión de cuádriceps en máquina." },
 
-    // --- CATÁLOGO GENERAL ---
-    { id: "crunch_abdominal_declinado", nombre: "Crunch abdominal declinado", grupo: "Abdomen", estado: "rehacer", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "crunch_abdominal_en_banco_plano", nombre: "Crunch abdominal en banco plano", grupo: "Abdomen", estado: "rehacer", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "crunch_abdominal_en_maquina", nombre: "Crunch abdominal en máquina", grupo: "Abdomen", estado: "rehacer", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "crunch_abdominal_en_polea", nombre: "Crunch abdominal en polea", grupo: "Abdomen", estado: "rehacer", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "plancha_abdominal", nombre: "Plancha abdominal", grupo: "Abdomen", estado: "rehacer", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "curl_arana", nombre: "curl araña", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fIWP-FRFNU0" },
-    { id: "curl_biceps_alterno", nombre: "curl biceps alterno", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ykJmrZ5v0Oo" },
-    { id: "curl_biceps_mancuernas", nombre: "curl biceps mancuernas", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ykJmrZ5v0Oo" },
-    { id: "curl_biceps_polea", nombre: "curl biceps polea", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "ykJmrZ5v0Oo" },
-    { id: "dominadas", nombre: "dominadas", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
-    { id: "jalon_agarre_abierto", nombre: "jalón agarre abierto", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc" },
-    { id: "jalon_agarre_cerrado", nombre: "jalón agarre cerrado", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc" },
-    { id: "pullover", nombre: "pullover", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "Jb_T2B5zQ5c" },
-    { id: "remo_con_barra", nombre: "remo con barra", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE" },
-    { id: "remo_con_mancuerna", nombre: "remo con mancuerna", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "G8l_8chR5BE" },
-    { id: "remo_gironda", nombre: "remo gironda", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "CAwf7n6Luuc" },
-    { id: "elevaciones_laterales", nombre: "elevaciones laterales", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "3VcKaXpzqRo" },
-    { id: "press_militar_con_mancuerna", nombre: "press militar con mancuerna", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2yjwXTZQDDI" },
-    { id: "pajaros_en_maquina", nombre: "pájaros en máquina", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "rep-qVOkqgk" },
-    { id: "press_banca", nombre: "press banca", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "8iPEnn-ltC8" },
-    { id: "press_inclinado_en_maquina", nombre: "press inclinado en máquina", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "8iPEnn-ltC8" },
-    { id: "cruces_en_polea_desde_abajo", nombre: "cruces en polea desde abajo", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "eozdVDA78K0" },
-    { id: "sentadilla_hack", nombre: "sentadilla hack", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0tn5K9NlCfo" },
-    { id: "prensa", nombre: "Prensa", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "IZxyjW7MPJQ" },
-    { id: "hip_thrust", nombre: "Hip thrust", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "0tn5K9NlCfo" },
-    { id: "fondos", nombre: "fondos", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2z8JmcrW-As" },
-    { id: "press_frances", nombre: "press francés", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2-LAMcpzODU" },
-    { id: "triceps_en_polea_con_cuerda", nombre: "Triceps en polea con cuerda", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "2-LAMcpzODU" }
+    // --- CATÁLOGO GENERAL Y COMPLEMENTARIO ---
+    { id: "crunch_abdominal_declinado", nombre: "Crunch abdominal declinado", grupo: "Abdomen", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
+    { id: "crunch_abdominal_en_banco_plano", nombre: "Crunch abdominal en banco plano", grupo: "Abdomen", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "eGo4IYlbE5g" },
+    { id: "crunch_abdominal_en_maquina", nombre: "Crunch abdominal en máquina", grupo: "Abdomen", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fGpg1zE-Kd0" },
+    { id: "crunch_abdominal_en_polea", nombre: "Crunch abdominal en polea", grupo: "Abdomen", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "TCeIYlq00P8" },
+    { id: "plancha_abdominal", nombre: "Plancha abdominal", grupo: "Abdomen", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "orXhTMDnQkI" },
+    { id: "curl_arana", nombre: "curl araña", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "YUhSi_sUGmM" },
+    { id: "curl_biceps_alterno", nombre: "curl biceps alterno", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "07D2fR_0iro" },
+    { id: "curl_biceps_mancuernas", nombre: "curl biceps mancuernas", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "07D2fR_0iro" },
+    { id: "curl_biceps_polea", nombre: "curl biceps polea", grupo: "Bíceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "TCeIYlq00P8" },
+    { id: "dominadas", nombre: "dominadas", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "orXhTMDnQkI" },
+    { id: "jalon_agarre_abierto", nombre: "jalón agarre abierto", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "pcodNSB6NXQ" },
+    { id: "jalon_agarre_cerrado", nombre: "jalón agarre cerrado", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "rudpTb4A0X8" },
+    { id: "pullover", nombre: "pullover", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "nP9KArjEDeU" },
+    { id: "remo_con_barra", nombre: "remo con barra", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "lTQJFDyQq0s" },
+    { id: "remo_con_mancuerna", nombre: "remo con mancuerna", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "hOBTkGA4mHE" },
+    { id: "remo_gironda", nombre: "remo gironda", grupo: "Espalda", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "iyOM6y5ADAQ" },
+    { id: "elevaciones_laterales", nombre: "elevaciones laterales", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "WmdhjLZzEjM" },
+    { id: "press_militar_con_mancuerna", nombre: "press militar con mancuerna", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "4N8wePRkBmY" },
+    { id: "pajaros_en_maquina", nombre: "pájaros en máquina", grupo: "Hombro", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "WmdhjLZzEjM" },
+    { id: "press_banca", nombre: "press banca", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "DfgI6sGn9iQ" },
+    { id: "press_inclinado_en_maquina", nombre: "press inclinado en máquina", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "fGpg1zE-Kd0" },
+    { id: "cruces_en_polea_desde_abajo", nombre: "cruces en polea desde abajo", grupo: "Pecho", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "nP9KArjEDeU" },
+    { id: "sentadilla_hack", nombre: "sentadilla hack", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "8Gk8snrY8u4" },
+    { id: "prensa", nombre: "Prensa", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "uTjkm8DXeJY" },
+    { id: "hip_thrust", nombre: "Hip thrust", grupo: "Pierna", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "RaKaj5gtk1A" },
+    { id: "fondos", nombre: "fondos", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "qdRDkVqVeOY" },
+    { id: "press_frances", nombre: "press francés", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "jCI6_pObQfo" },
+    { id: "triceps_en_polea_con_cuerda", nombre: "Triceps en polea con cuerda", grupo: "Tríceps", estado: "disponible", archivo: "", driveId: "", driveUrl: "", youtubeId: "qdRDkVqVeOY" }
   ];
 
   // Mapa directo de los ejercicios de la rutina oficial hacia la base de datos

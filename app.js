@@ -1392,74 +1392,119 @@
     fuenteActiva: 'drive'
   };
 
-  // Mapa de demostraciones técnicas activas para reproducción inmediata en la app
+  // Mapa de demostraciones técnicas activas para reproducción inmediata en la app (35 EJERCICIOS EXACTOS)
   var VIDEOS_DEMOSTRACION = {
     // DÍA 1 PULL
-    'd1_e1': 'eGo4IYlbE5g', // Dominadas/jalón
-    'd1_e2': 'G8l_8chR5BE', // Remo T
-    'd1_e3': 'CAwf7n6Luuc', // Jalón máquina
-    'd1_e4': 'G8l_8chR5BE', // Remo unilateral
-    'd1_e5': 'zC3nLlEvin4', // Bíceps martillo mancuernas
-    'd1_e6': 'fIWP-FRFNU0', // Scott máquina unilateral
+    'd1_e1': 'orXhTMDnQkI', // Dominadas/jalón (DOMINADA vs JALÓN AL PECHO)
+    'd1_e2': 'X2-yKYyjWAY', // Remo T (Remo en Barra "T" Técnica Correcta)
+    'd1_e3': 'pcodNSB6NXQ', // Jalón máquina (Jalón máquina divergente)
+    'd1_e4': 'hOBTkGA4mHE', // Remo unilateral (REMO UNILATERAL Con MANCUERNAS)
+    'd1_e5': '07D2fR_0iro', // Bíceps martillo mancuernas (CURL MARTILLO)
+    'd1_e6': 'YUhSi_sUGmM', // Scott máquina unilateral (CURL de bíceps en banco SCOTT)
 
     // DÍA 2 PUSH
-    'd2_e1': '8iPEnn-ltC8', // Press inclinado 60%
-    'd2_e2': '1aOw8-hVoMUnMAnSYxLdvIaY-DcHwaf3y', // Press plano máquina
-    'd2_e3': '1A3wybVQer98mXdyqyuWcfq2JDZRW9PFg', // Apertura unilateral desde abajo
-    'd2_e4': '2yjwXTZQDDI', // Press hombro neutro
-    'd2_e5': '3VcKaXpzqRo', // Laterales máquina unilateral
-    'd2_e6': '3VcKaXpzqRo', // Laterales máquina
+    'd2_e1': 'DfgI6sGn9iQ', // Press inclinado 60% (Press inclinado con Mancuernas)
+    'd2_e2': 'fGpg1zE-Kd0', // Press plano máquina (Press de pecho en máquina)
+    'd2_e3': 'nP9KArjEDeU', // Apertura unilateral desde abajo (Cruce de poleas bajas)
+    'd2_e4': '4N8wePRkBmY', // Press hombro neutro (PRESS MILITAR CON MANCUERNAS AGARRE NEUTRO SENTADO)
+    'd2_e5': 'V98wql8IfVA', // Laterales máquina unilateral (ELEVACIÓN LATERAL DE HOMBRO EN POLEA BAJA UNILATERAL)
+    'd2_e6': 'WmdhjLZzEjM', // Laterales máquina (ELEVACION LATERAL MAQUINA)
 
     // DÍA 3 LEG
-    'd3_e1': 'IZxyjW7MPJQ', // Prensa horizontal unilateral
-    'd3_e2': '0tn5K9NlCfo', // Hack pisada neutra
-    'd3_e3': '12w8EAR9mWsR33M7OT0Ym9jipqeHH5LTC', // Zancadas estáticas Smith
-    'd3_e4': '0tn5K9NlCfo', // Belt squat cuádriceps
-    'd3_e5': '13Fkwl6MsUk66qJMxKUYU0pIQ5GmqD8kC', // Hip thrust unilateral
-    'd3_e6': 'IZxyjW7MPJQ', // Gemelo de pie
+    'd3_e1': 'uTjkm8DXeJY', // Prensa horizontal unilateral (PRENSA de pierna UNILATERAL para GLÚTEOS)
+    'd3_e2': '8Gk8snrY8u4', // Hack pisada neutra (Sentadilla Hack Técnica Correcta)
+    'd3_e3': 'yH0FeAwbjbw', // Zancadas estáticas Smith (Zancada en multipower / Smith split squat)
+    'd3_e4': 'beP38yZ1N9E', // Belt squat cuádriceps (Sentadilla con cinturón en máquina belt squat)
+    'd3_e5': 'RaKaj5gtk1A', // Hip thrust unilateral (Realiza correctamente el hip thrust unilateral)
+    'd3_e6': 'iOuAzeiDicY', // Gemelo de pie (GEMELOS DE PIE EN MÁQUINA)
 
     // DÍA 4 PULL
-    'd4_e1': 'G8l_8chR5BE', // Hiperextensión lumbar con peso
-    'd4_e2': 'G8l_8chR5BE', // Remo barra Smith
-    'd4_e3': 'CAwf7n6Luuc', // Jalón unilateral polea alta
-    'd4_e4': 'G8l_8chR5BE', // Remo máquina agarre supino
-    'd4_e5': 'CAwf7n6Luuc', // Low row
+    'd4_e1': '5mzen3mhQOE', // Hiperextensión lumbar con peso (Híper-extensiones en banco romano con disco)
+    'd4_e2': 'lTQJFDyQq0s', // Remo barra Smith (REMO EN SMITH EXPLICACIÓN)
+    'd4_e3': 'rudpTb4A0X8', // Jalón unilateral polea alta (JALON UNILATERAL AGARRE NEUTRO EN POLEA ALTA)
+    'd4_e4': 'iyOM6y5ADAQ', // Remo máquina agarre supino (La Forma Correcta de Hacer Remo Sentado)
+    'd4_e5': 'Zigz-qCgY6U', // Low row (REMO BAJO EN MÁQUINA - EXPLICACIÓN TÉCNICA)
 
     // DÍA 5 ARMS
-    'd5_e1': 'ykJmrZ5v0Oo', // Polea cuerda baja
-    'd5_e2': '2-LAMcpzODU', // Polea alta cuerda
-    'd5_e3': 'ykJmrZ5v0Oo', // Curl bíceps barra Z
-    'd5_e4': '2-LAMcpzODU', // Press francés mancuernas
-    'd5_e5': 'fIWP-FRFNU0', // scott unilateral
-    'd5_e6': '2-LAMcpzODU', // Polea unilateral tríceps
+    'd5_e1': 'TCeIYlq00P8', // Polea cuerda baja (Rope Cable Biceps Curl en polea con cuerda)
+    'd5_e2': 'qdRDkVqVeOY', // Polea alta cuerda (Extensión de tríceps con cuerda)
+    'd5_e3': 'MtgfQwdgE3k', // Curl bíceps barra Z (Curl con Barra Z de pie)
+    'd5_e4': 'jCI6_pObQfo', // Press francés mancuernas (PRESS FRANCÉS CON MANCUERNAS)
+    'd5_e5': 'KvZKqlRFhXc', // scott unilateral (Curl unilateral con mancuerna en banco Scott)
+    'd5_e6': 'visrQO8rhNo', // Polea unilateral tríceps (EXTENSIÓN DE TRÍCEPS UNILATERAL EN POLEA)
 
     // DÍA 6 LEG
-    'd6_e1': 'ELOCsoDSmrg', // Aductor
-    'd6_e2': 'G8l_8chR5BE', // Peso muerto barra
-    'd6_e3': '0tn5K9NlCfo', // Sentadilla sumo en Smith
-    'd6_e4': '1Tq3QdYUuHs', // Femoral tumbado
-    'd6_e5': 'ELOCsoDSmrg', // Femoral sentado
-    'd6_e6': 'YyvSfVjQeL0'  // Extensión cuádriceps
+    'd6_e1': 'vlViIgtkvh4', // Aductor (Aductor en máquina sentada)
+    'd6_e2': '0XL4cZR2Ink', // Peso muerto barra (PESO MUERTO con seguridad)
+    'd6_e3': 'qL3heyJRJvw', // Sentadilla sumo en Smith (Sentadilla sumo en Smith)
+    'd6_e4': 'nmqG-tIr0hc', // Femoral tumbado (CURL FEMORAL EN MÁQUINA TUMBADO)
+    'd6_e5': 'oOE1vaDX71M', // Femoral sentado (FEMORAL SENTADO)
+    'd6_e6': 'SguKyjZ6y9Q'  // Extensión cuádriceps (Extensiones de cuádriceps en máquina)
   };
+
+  // Mapeo por texto normalizado del título para garantizar que coincida exactamente
+  var VIDEOS_POR_TITULO = {
+    'dominadas jalon': 'orXhTMDnQkI',
+    'dominadas': 'orXhTMDnQkI',
+    'remo t': 'X2-yKYyjWAY',
+    'jalon maquina': 'pcodNSB6NXQ',
+    'jalon al pecho': 'pcodNSB6NXQ',
+    'remo unilateral': 'hOBTkGA4mHE',
+    'biceps martillo mancuernas': '07D2fR_0iro',
+    'curl martillo': '07D2fR_0iro',
+    'scott maquina unilateral': 'YUhSi_sUGmM',
+    'press inclinado 60': 'DfgI6sGn9iQ',
+    'press inclinado': 'DfgI6sGn9iQ',
+    'press plano maquina': 'fGpg1zE-Kd0',
+    'press pecho maquina': 'fGpg1zE-Kd0',
+    'apertura unilateral desde abajo': 'nP9KArjEDeU',
+    'press hombro neutro': '4N8wePRkBmY',
+    'laterales maquina unilateral': 'V98wql8IfVA',
+    'laterales maquina': 'WmdhjLZzEjM',
+    'prensa horizontal unilateral': 'uTjkm8DXeJY',
+    'hack pisada neutra': '8Gk8snrY8u4',
+    'sentadilla hack': '8Gk8snrY8u4',
+    'zancadas estaticas smith': 'yH0FeAwbjbw',
+    'belt squat cuadriceps': 'beP38yZ1N9E',
+    'belt squat': 'beP38yZ1N9E',
+    'hip thrust unilateral': 'RaKaj5gtk1A',
+    'hip thrust': 'RaKaj5gtk1A',
+    'gemelo de pie': 'iOuAzeiDicY',
+    'hiperextension lumbar con peso': '5mzen3mhQOE',
+    'remo barra smith': 'lTQJFDyQq0s',
+    'jalon unilateral polea alta': 'rudpTb4A0X8',
+    'remo maquina agarre supino': 'iyOM6y5ADAQ',
+    'low row': 'Zigz-qCgY6U',
+    'polea cuerda baja': 'TCeIYlq00P8',
+    'polea alta cuerda': 'qdRDkVqVeOY',
+    'curl biceps barra z': 'MtgfQwdgE3k',
+    'press frances mancuernas': 'jCI6_pObQfo',
+    'scott unilateral': 'KvZKqlRFhXc',
+    'polea unilateral triceps': 'visrQO8rhNo',
+    'aductor': 'vlViIgtkvh4',
+    'peso muerto barra': '0XL4cZR2Ink',
+    'sentadilla sumo en smith': 'qL3heyJRJvw',
+    'femoral tumbado': 'nmqG-tIr0hc',
+    'femoral sentado': 'oOE1vaDX71M',
+    'extension cuadriceps': 'SguKyjZ6y9Q'
+  };
+
+  function normalizarTextoBusqueda(str) {
+    if (!str) return '';
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
 
   function normalizarUrlVideo(url) {
     if (!url) return '';
     url = url.trim();
 
-    // 1. Google Drive: /file/d/FILE_ID/view o /open?id=FILE_ID
-    var matchDrive = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-    if (matchDrive && matchDrive[1]) {
-      return 'https://drive.google.com/file/d/' + matchDrive[1] + '/preview';
-    }
-    var matchDriveId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    if (matchDriveId && matchDriveId[1]) {
-      return 'https://drive.google.com/file/d/' + matchDriveId[1] + '/preview';
-    }
-
-    // 2. YouTube
     var matchYt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]+)/);
     if (matchYt && matchYt[1]) {
-      return 'https://www.youtube-nocookie.com/embed/' + matchYt[1] + '?autoplay=1&rel=0&playsinline=1';
+      return 'https://www.youtube-nocookie.com/embed/' + matchYt[1] + '?autoplay=1&controls=1&rel=0&playsinline=1';
     }
 
     return url;
@@ -1470,12 +1515,13 @@
     var modal = $('videoModal');
     var titulo = $('videoModalExerciseName');
     var notes = $('videoModalNotes');
-    var tabDrive = $('btnTabDrive');
-    var tabYt = $('btnTabYoutube');
-    var btnDirect = $('btnOpenDriveDirect');
+    var notesCard = $('videoModalNotesCard');
+    var btnYtSearch = $('btnSearchOnYoutube');
+    var btnYtSearchText = $('btnSearchOnYoutubeText');
+    var iframe = $('videoIframe');
     if (!modal) return;
 
-    // Buscar en la Base de Datos Maestra de 103 ejercicios
+    // Buscar en la Base de Datos Maestra de ejercicios
     var matchBD = null;
     if (window.CGM_BASE_DATOS_EJERCICIOS && window.CGM_BASE_DATOS_EJERCICIOS.buscar) {
       if (dbId) matchBD = window.CGM_BASE_DATOS_EJERCICIOS.buscar(dbId);
@@ -1484,111 +1530,65 @@
     }
 
     var nombreFinal = exNombre || (matchBD ? matchBD.nombre : 'Técnica del Ejercicio');
-    var driveId = (matchBD && matchBD.driveId) ? matchBD.driveId : '';
-    var driveUrl = (matchBD && matchBD.driveUrl) ? matchBD.driveUrl : (driveId ? ('https://drive.google.com/file/d/' + driveId + '/view') : '');
-    var youtubeId = (matchBD && matchBD.youtubeId) ? matchBD.youtubeId : (VIDEOS_DEMOSTRACION[exId] || 'eGo4IYlbE5g');
-    var esRehacer = matchBD ? (matchBD.estado === 'rehacer') : false;
-    var tieneDrive = !!(driveId && !esRehacer);
+    var normNombre = normalizarTextoBusqueda(nombreFinal);
+
+    // Obtener el ID de YouTube exacto y verificado del ejercicio
+    var youtubeId = '';
+    if (exId && VIDEOS_DEMOSTRACION[exId]) {
+      youtubeId = VIDEOS_DEMOSTRACION[exId];
+    } else if (matchBD && matchBD.youtubeId) {
+      youtubeId = matchBD.youtubeId;
+    } else if (VIDEOS_POR_TITULO[normNombre]) {
+      youtubeId = VIDEOS_POR_TITULO[normNombre];
+    } else {
+      for (var clave in VIDEOS_POR_TITULO) {
+        if (normNombre.indexOf(clave) !== -1 || clave.indexOf(normNombre) !== -1) {
+          youtubeId = VIDEOS_POR_TITULO[clave];
+          break;
+        }
+      }
+    }
+    if (!youtubeId) youtubeId = 'pcodNSB6NXQ'; // Jalón máquina como fallback
 
     videoActualData.exId = exId;
     videoActualData.nombre = nombreFinal;
     videoActualData.matchBD = matchBD;
-    videoActualData.driveId = driveId;
-    videoActualData.driveUrl = driveUrl;
     videoActualData.youtubeId = youtubeId;
 
     if (titulo) titulo.textContent = nombreFinal;
-    if (notes) {
-      if (exIndicaciones) {
-        notes.textContent = '💡 ' + exIndicaciones;
-        notes.style.display = 'block';
-      } else {
-        notes.style.display = 'none';
+
+    // Botón directo a YouTube con búsqueda del ejercicio
+    if (btnYtSearch) {
+      btnYtSearch.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(nombreFinal + ' tecnica ejercicio gimnasio');
+      if (btnYtSearchText) {
+        btnYtSearchText.textContent = 'Ver más vídeos de "' + nombreFinal + '" en YouTube';
       }
     }
 
-    if (btnDirect) {
-      if (tieneDrive && driveUrl) {
-        btnDirect.href = driveUrl;
-        btnDirect.style.display = 'inline-flex';
+    // Pautas e indicaciones técnicas del Coach
+    if (notes && notesCard) {
+      var textoIndicaciones = exIndicaciones || (matchBD ? matchBD.descripcion : '');
+      if (textoIndicaciones && textoIndicaciones.trim()) {
+        notes.textContent = textoIndicaciones;
+        notesCard.style.display = 'block';
       } else {
-        btnDirect.style.display = 'none';
+        notesCard.style.display = 'none';
       }
     }
 
-    if (tieneDrive) {
-      if (tabDrive) {
-        tabDrive.classList.add('active');
-        tabDrive.classList.remove('disabled');
-      }
-      if (tabYt) tabYt.classList.remove('active');
-      reproducirVideoNativoDrive(driveId);
-      videoActualData.fuenteActiva = 'drive';
-    } else {
-      if (tabDrive) {
-        tabDrive.classList.remove('active');
-        tabDrive.classList.add('disabled');
-      }
-      if (tabYt) tabYt.classList.add('active');
-      reproducirVideoYoutube(youtubeId);
-      videoActualData.fuenteActiva = 'youtube';
+    // Cargar iframe de YouTube con controles completos
+    if (iframe) {
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + youtubeId + '?autoplay=1&controls=1&rel=0&playsinline=1';
+      iframe.style.display = 'block';
     }
 
     modal.classList.add('open');
   }
 
-  function reproducirVideoNativoDrive(driveId) {
-    var videoNative = $('videoNativePlayer');
-    var iframe = $('videoIframe');
-    if (!driveId) return;
-
-    var urlDirecta = 'https://drive.usercontent.google.com/download?id=' + driveId + '&export=download';
-
-    if (videoNative) {
-      videoNative.style.display = 'block';
-      videoNative.src = urlDirecta;
-      videoNative.muted = true;
-      videoNative.loop = true;
-      videoNative.playsInline = true;
-      videoNative.autoplay = true;
-
-      videoNative.onerror = function() {
-        console.warn('Fallback a iframe de Drive');
-        videoNative.style.display = 'none';
-        if (iframe) {
-          iframe.src = 'https://drive.google.com/file/d/' + driveId + '/preview';
-          iframe.style.display = 'block';
-        }
-      };
-
-      try {
-        var prom = videoNative.play();
-        if (prom && typeof prom.catch === 'function') {
-          prom.catch(function(e) {
-            console.log('Autoplay silencioso:', e);
-          });
-        }
-      } catch (err) {}
-    }
-
-    if (iframe) {
-      iframe.style.display = 'none';
-      iframe.src = '';
-    }
-  }
-
   function reproducirVideoYoutube(youtubeId) {
-    var videoNative = $('videoNativePlayer');
     var iframe = $('videoIframe');
-
-    if (videoNative) {
-      videoNative.pause();
-      videoNative.src = '';
-      videoNative.style.display = 'none';
-    }
-
     if (iframe) {
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + (youtubeId || 'eGo4IYlbE5g') + '?autoplay=1&controls=0&rel=0&playsinline=1&loop=1&playlist=' + (youtubeId || 'eGo4IYlbE5g');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + (youtubeId || 'pcodNSB6NXQ') + '?autoplay=1&controls=1&rel=0&playsinline=1';
       iframe.style.display = 'block';
     }
   }
@@ -1596,13 +1596,10 @@
   function cerrarModalVideo() {
     var modal = $('videoModal');
     var iframe = $('videoIframe');
-    var videoNative = $('videoNativePlayer');
 
-    if (videoNative) {
-      videoNative.pause();
-      videoNative.src = '';
+    if (iframe) {
+      iframe.src = 'about:blank';
     }
-    if (iframe) iframe.src = '';
     if (modal) modal.classList.remove('open');
     ejercicioVideoActualId = null;
   }
@@ -2242,38 +2239,7 @@
       if (e.target === $('videoModal')) cerrarModalVideo();
     });
 
-    // Pestañas selectoras de reproductor de vídeo
-    escuchar($('btnTabDrive'), 'click', function() {
-      if (!videoActualData.driveId) return;
-      var tabDrive = $('btnTabDrive');
-      var tabYt = $('btnTabYoutube');
-      if (tabDrive) tabDrive.classList.add('active');
-      if (tabYt) tabYt.classList.remove('active');
-      reproducirVideoNativoDrive(videoActualData.driveId);
-      videoActualData.fuenteActiva = 'drive';
-    });
 
-    escuchar($('btnTabYoutube'), 'click', function() {
-      var tabDrive = $('btnTabDrive');
-      var tabYt = $('btnTabYoutube');
-      if (tabYt) tabYt.classList.add('active');
-      if (tabDrive) tabDrive.classList.remove('active');
-      var ytId = videoActualData.youtubeId || 'eGo4IYlbE5g';
-      reproducirVideoYoutube(ytId);
-      videoActualData.fuenteActiva = 'youtube';
-    });
-
-    // Toque sobre el vídeo para pausar o continuar sin botones molestos en pantalla
-    var videoNative = $('videoNativePlayer');
-    if (videoNative) {
-      videoNative.addEventListener('click', function() {
-        if (videoNative.paused) {
-          videoNative.play();
-        } else {
-          videoNative.pause();
-        }
-      });
-    }
 
     // Calculadoras
     escuchar($('calcTargetWeight'), 'input', actualizarCalculadoraDiscos);

@@ -1,19 +1,19 @@
 // =============================================================================
-// SERVICE WORKER · JPEREZCOACH (OFFLINE PWA)
+// SERVICE WORKER · JPEREZCOACH (OFFLINE PWA - NETWORK FIRST)
 // =============================================================================
 
-const CACHE_NAME = 'jperezcoach-v1';
+const CACHE_NAME = 'jperezcoach-v2';
 
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css',
-  './app.js',
-  './routine-data.js',
-  './ejercicios-db.js',
-  './rutinas-personalizadas.js',
-  './pdf-rutina-parser.js',
-  './rutina-pdf-ui.js',
+  './styles.css?v=7',
+  './app.js?v=2',
+  './routine-data.js?v=2',
+  './ejercicios-db.js?v=2',
+  './rutinas-personalizadas.js?v=2',
+  './pdf-rutina-parser.js?v=2',
+  './rutina-pdf-ui.js?v=2',
   './manifest.webmanifest',
   './icon.png',
   './icon-192.png',
@@ -32,7 +32,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(ASSETS_TO_CACHE).catch(err => {
-        console.warn('Algunos recursos no se pudieron precachear:', err);
+        console.warn('Recursos cacheados con advertencias:', err);
       });
     }).then(() => self.skipWaiting())
   );
@@ -48,41 +48,33 @@ self.addEventListener('activate', event => {
   );
 });
 
+// Estrategia Network-First para cargar siempre la última versión y respaldar en offline
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  // No cachear peticiones externas a youtube o apis
   if (url.origin !== location.origin) {
-    return;
+    return; // No cachear YouTube ni recursos externos
   }
 
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        // Devolver caché y actualizar en segundo plano
-        fetch(event.request).then(networkResponse => {
-          if (networkResponse && networkResponse.status === 200) {
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, networkResponse));
-          }
-        }).catch(() => {});
-        return cachedResponse;
-      }
-
-      return fetch(event.request).then(networkResponse => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
+    fetch(event.request)
+      .then(networkResponse => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
         }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
         return networkResponse;
-      }).catch(() => {
-        if (event.request.destination === 'document') {
-          return caches.match('./index.html');
-        }
-      });
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request).then(cached => {
+          if (cached) return cached;
+          if (event.request.destination === 'document') {
+            return caches.match('./index.html');
+          }
+        });
+      })
   );
 });
