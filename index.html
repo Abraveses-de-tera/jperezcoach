@@ -1,0 +1,957 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0c10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="JPEREZCOACH">
+  <meta name="description" content="Aplicación de entrenamiento personalizada de Jose Perez · Plan de 6 Días Rotativos para David Otero">
+  
+  <title>JPEREZCOACH · Plan de Entrenamiento 6 Días</title>
+  
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+
+  <!-- Confeti para celebrar el final del entrenamiento -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Barra Superior -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <img src="icon.png" alt="Logo Jose Perez Team" class="brand-logo-img">
+        <div class="brand-info">
+          <h1>JPEREZCOACH</h1>
+          <p>Jose Perez · 6 Días Rotativos</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="wakeLockBtn" class="icon-btn" title="Mantener la pantalla siempre encendida" aria-label="Pantalla encendida">
+          ☀️
+        </button>
+        <button id="soundToggleBtn" class="icon-btn active" title="Sonido del cronómetro de descanso" aria-label="Sonido">
+          🔔
+        </button>
+        <button id="plateCalcQuickBtn" class="icon-btn" title="Calculadora de discos para barra" aria-label="Calculadora de discos">
+          ⚖️
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner para instalar la aplicación en el móvil -->
+  <div class="main-container">
+    <div id="pwaBanner" class="pwa-banner">
+      <div class="pwa-banner-text">
+        <strong>📱 Instalar la aplicación en tu móvil</strong>
+        <span>Úsala en el gimnasio a pantalla completa y sin conexión a internet</span>
+      </div>
+      <button id="pwaInstallBtn" class="pwa-install-btn">Instalar</button>
+    </div>
+  </div>
+
+  <!-- Contenedor Principal de Pestañas -->
+  <main class="main-container">
+
+    <!-- ===================================================================
+         PESTAÑA 1: RUTINA (SELECCIÓN DE DÍA Y ROTACIÓN CONTINUA)
+         =================================================================== -->
+    <section id="tab-routine" class="tab-view active">
+      
+      <!-- Selector de Rutina Activa y Acceso de Administrador -->
+      <div id="routineSelectorWrap" class="routine-selector-container"></div>
+
+      <!-- Tarjeta Principal: Siguiente Entrenamiento Sugerido -->
+            <!-- Banner Oficial del Entrenador y Atleta -->
+      <div class="coach-hero-banner">
+        <div class="coach-header-row">
+          <img src="coach.png" alt="Jose Perez Coach" class="coach-avatar-img">
+          <div class="coach-meta-info">
+            <div class="coach-brand-title">
+              JOSE PEREZ TEAM
+              <span class="badge-pro">COACH</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+              Plan de Entrenamiento Personalizado · Alta Intensidad e Hipertrofia
+            </p>
+            <div class="coach-contact-links">
+              <a href="mailto:jperez@mail.com" class="coach-contact-pill">✉️ jperez@mail.com</a>
+              <a href="tel:+34658507136" class="coach-contact-pill">📞 +34 658 50 71 36</a>
+              <a href="https://jperezcoach.com" target="_blank" rel="noopener" class="coach-contact-pill">🌐 jperezcoach.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="client-profile-strip">
+          <div>
+            <span style="color: var(--text-dim); text-transform: uppercase; font-size: 10px; font-weight: 700;">Atleta: </span>
+            <span class="client-name-tag">David Otero</span>
+            <span style="color: var(--text-dim); font-size: 11px; margin-left: 6px;">(01/12/26)</span>
+          </div>
+          <span class="client-goal-tag">⚡ Hipertrofia</span>
+        </div>
+      </div>
+      <div class="today-hero">
+        <div class="hero-status">
+          <span class="hero-subtitle">⚡ Tu Próximo Entrenamiento</span>
+          <span id="currentDateBadge" class="badge-gold">En secuencia</span>
+        </div>
+        <h2 id="todayWorkoutTitle" class="hero-title">Cargando rutina...</h2>
+        <p id="todayWorkoutDesc" class="hero-desc">Sistema de 6 días en rotación continua: entrenas a tu ritmo sin estar atado a días de la semana.</p>
+        <div class="hero-actions">
+          <button id="startTodayWorkoutBtn" class="btn-primary">
+            <span>▶</span> Empezar Este Entrenamiento
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector Directo de Días -->
+      <div class="section-heading">
+        <span>Elige el Día que Quieras Entrenar</span>
+        <span id="daysDirectBadge" class="badge-info">6 Días</span>
+      </div>
+
+      <div id="daysDirectGrid" class="days-direct-grid">
+        <div class="direct-day-card" data-day="D1">
+          <span class="direct-day-badge">1 PULL</span>
+          <h3 class="direct-day-title">Espalda y Bíceps</h3>
+          <p class="direct-day-sub">6 ejercicios · Dominadas pesadas, Remo T y Bíceps martillo</p>
+        </div>
+
+        <div class="direct-day-card" data-day="D2">
+          <span class="direct-day-badge">2 PUSH</span>
+          <h3 class="direct-day-title">Pecho y Hombro</h3>
+          <p class="direct-day-sub">6 ejercicios · Press 60%, plano piramidal y laterales</p>
+        </div>
+
+        <div class="direct-day-card" data-day="D3">
+          <span class="direct-day-badge">3 LEG</span>
+          <h3 class="direct-day-title">Pierna Completa</h3>
+          <p class="direct-day-sub">6 ejercicios · Prensa unilateral, Hack 5s y Belt squat rebotes</p>
+        </div>
+
+        <div class="direct-day-card" data-day="D4">
+          <span class="direct-day-badge">4 PULL</span>
+          <h3 class="direct-day-title">Espalda y Cadena Post.</h3>
+          <p class="direct-day-sub">5 ejercicios · Hiperextensión peso, Remo Smith y Low row</p>
+        </div>
+
+        <div class="direct-day-card" data-day="D5">
+          <span class="direct-day-badge">5 ARMS</span>
+          <h3 class="direct-day-title">Brazos (Bíceps y Tríceps)</h3>
+          <p class="direct-day-sub">6 ejercicios · Poleas isométricas, curl Z y Scott</p>
+        </div>
+
+        <div class="direct-day-card" data-day="D6">
+          <span class="direct-day-badge">6 LEG</span>
+          <h3 class="direct-day-title">Pierna (Cadena Post.)</h3>
+          <p class="direct-day-sub">6 ejercicios · Aductor 5s, peso muerto pesado y femorales</p>
+        </div>
+      </div>
+
+      <!-- Secuencia del Ciclo Rotativo -->
+      <div class="section-heading">
+        <span>Orden del Ciclo Rotativo</span>
+        <span style="font-size: 11px; color: var(--text-dim);">Frecuencia adaptada</span>
+      </div>
+
+      <div class="cgm-card" style="padding: 12px 14px;">
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+          Si te saltas un día por trabajo o descanso, simplemente continúas con el siguiente día de la lista cuando vuelvas al gimnasio:
+        </p>
+        <div id="cycleStepsList" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- Generado dinámicamente con JS -->
+        </div>
+      </div>
+
+      <!-- Tarjeta Explicativa: Cómo funciona la metodología Jose Perez -->
+      <div class="rules-box">
+        <h4>📋 Metodología Jose Perez Coach</h4>
+        <ul>
+          <li><strong>Sin días fijos:</strong> Si un día no puedes entrenar, la rotación continúa en el mismo orden el próximo día que vayas.</li>
+          <li><strong>RIR 0 (Fallo Técnico):</strong> Llevar las series hasta no poder completar una repetición más con técnica impecable, sin guardar ninguna en recámara.</li>
+          <li><strong>Excéntrico en 5 seg / Bajadas en 5s:</strong> Descenso controlado en 5 segundos exactos para máxima tensión mecánica e hipertrofia.</li>
+          <li><strong>Rest Pause:</strong> Al llegar al fallo, pausa de 10-15 segundos respirando hondo y sacar 2-3 repeticiones más con el mismo peso.</li>
+          <li><strong>Tempo 1-3-1:</strong> 1 segundo subida concéntrica, 3 segundos bajada excéntrica lenta y 1 segundo de pausa isométrica.</li>
+          <li><strong>Serie piramidal (12, 10, 8, 6, 4):</strong> Aumentar el peso progresivamente en cada tramo de la serie.</li>
+          <li><strong>Belt Squat rebotes acumulativos:</strong> 1 rep 1 rebote, 1 rep 2 rebotes... así hasta 10 rebotes en la última repetición.</li>
+          <li><strong>Paradas isométricas:</strong> 3 segundos estáticos en el punto de máxima contracción (arriba o abajo).</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         PESTAÑA 2: ENTRENAR (REGISTRO EN DIRECTO)
+         =================================================================== -->
+    <section id="tab-workout" class="tab-view">
+      
+      <!-- Estado cuando NO hay entrenamiento iniciado -->
+      <div id="noActiveWorkoutView" class="cgm-card text-center" style="padding: 36px 16px;">
+        <div style="font-size: 44px; margin-bottom: 12px;">🏋️</div>
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">No hay ningún entrenamiento en curso</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+          Elige Día 1 a Día 6 en la pestaña "Rutina" para empezar a apuntar tus pesos y repeticiones.
+        </p>
+        <button id="goToRoutineBtn" class="btn-primary" style="max-width: 260px; margin: 0 auto;">
+          Ir a Selección de Día
+        </button>
+      </div>
+
+      <!-- Vista del Entrenamiento Activo -->
+      <div id="activeWorkoutContent" style="display: none;">
+        
+        <!-- Cabecera del Entrenamiento Activo -->
+        <div class="active-workout-header">
+          <div class="active-meta">
+            <h2 id="activeWorkoutName">1 PULL: Espalda y Bíceps</h2>
+            <p id="activeWorkoutSubtitle">JPEREZCOACH · Modo Gimnasio</p>
+          </div>
+          <div class="timer-box" title="Tiempo de entrenamiento">
+            <span>⏱</span>
+            <span id="workoutElapsedTimer">00:00</span>
+          </div>
+        </div>
+
+        <!-- Barra de Progreso del Entrenamiento -->
+        <div class="progress-strip">
+          <div id="workoutProgressBar" class="progress-fill"></div>
+        </div>
+
+        <!-- Lista de Ejercicios -->
+        <div id="exercisesContainer">
+          <!-- Generado dinámicamente con JS -->
+        </div>
+
+        <!-- Botones de Finalización -->
+        <div class="cgm-card finish-workout-card">
+          <button id="finishWorkoutBtn" class="btn-finish">
+            🏆 GUARDAR Y FINALIZAR ENTRENAMIENTO
+          </button>
+          <button id="discardWorkoutBtn" class="btn-cancel-workout">
+            Descartar o cancelar este entrenamiento
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         PESTAÑA 3: RÉCORDS, PROGRESO Y ESTADÍSTICAS
+         =================================================================== -->
+    <section id="tab-history" class="tab-view">
+      
+      <!-- Panel de Métricas Globales (Inspirado en OpenGym y Hevy) -->
+      <div class="stats-overview-grid">
+        <div class="stat-card-gold">
+          <span class="stat-card-icon">🏋️</span>
+          <div class="stat-card-val" id="statTotalWorkouts">0</div>
+          <div class="stat-card-label">Sesiones</div>
+        </div>
+        <div class="stat-card-gold">
+          <span class="stat-card-icon">⚖️</span>
+          <div class="stat-card-val" id="statTotalTonnage">0 t</div>
+          <div class="stat-card-label">Tonelaje Total</div>
+        </div>
+        <div class="stat-card-gold">
+          <span class="stat-card-icon">🔥</span>
+          <div class="stat-card-val" id="statStreakDays">0</div>
+          <div class="stat-card-label">Días (30d)</div>
+        </div>
+      </div>
+
+      <!-- Gráfico de Sobrecarga Progresiva (Inspirado en Gym-Tracker) -->
+      <div class="cgm-card featured" style="margin-top: 14px;">
+        <div class="card-title-row">
+          <h2 class="card-title">📈 Curva de Sobrecarga Progresiva</h2>
+          <span id="chartGainBadge" class="badge-gold">+0 kg</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Evolución del peso máximo levantado a lo largo del tiempo:
+        </p>
+
+        <!-- Selector de Ejercicio para la gráfica -->
+        <div style="margin-bottom: 14px;">
+          <label for="progressionExerciseSelect" style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 700; text-transform: uppercase;">Selecciona el ejercicio:</label>
+          <select id="progressionExerciseSelect" class="cgm-select" style="width: 100%;">
+            <!-- Rellenado dinámicamente con todos los ejercicios -->
+          </select>
+        </div>
+
+        <!-- Contenedor del Gráfico SVG Vectorial -->
+        <div id="progressionChartContainer" class="chart-container-card">
+          <!-- Gráfico SVG generado por app.js -->
+        </div>
+      </div>
+      
+      <div class="card-title-row" style="margin-top: 20px;">
+        <h2 class="card-title">🏆 Récords Personales</h2>
+        <span class="badge-gold">Tus Mejores Marcas</span>
+      </div>
+
+      <div class="cgm-card">
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Tus pesos máximos registrados en cada ejercicio:
+        </p>
+        <div id="prsGrid" class="prs-grid">
+          <!-- Generado dinámicamente -->
+        </div>
+      </div>
+
+      <div class="card-title-row" style="margin-top: 24px;">
+        <h2 class="card-title">📅 Historial de Entrenamientos</h2>
+        <span id="historyCountBadge" class="badge-info">0 sesiones</span>
+      </div>
+
+      <div id="historyList">
+        <!-- Generado dinámicamente -->
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         PESTAÑA 4: HERRAMIENTAS Y AJUSTES
+         =================================================================== -->
+    <section id="tab-tools" class="tab-view">
+      
+      <!-- Calculadora de Discos -->
+      <div class="cgm-card featured">
+        <div class="card-title-row">
+          <h2 class="card-title">⚖️ Calculadora de Discos</h2>
+          <span class="badge-gold">Por lado de la barra</span>
+        </div>
+
+        <div class="plate-calc-container">
+          <div class="calc-input-row">
+            <div class="calc-input-field">
+              <label for="calcTargetWeight">Peso Total Objetivo (kg)</label>
+              <input type="number" id="calcTargetWeight" value="90" step="2.5" min="10">
+            </div>
+            <div class="calc-input-field">
+              <label for="calcBarWeight">Peso de la Barra</label>
+              <select id="calcBarWeight">
+                <option value="20" selected>Barra Olímpica (20 kg)</option>
+                <option value="15">Barra Femenina / Técnica (15 kg)</option>
+                <option value="10">Barra Corta / Z (10 kg)</option>
+                <option value="0">Máquina Guiada / Multipower (0 kg)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="font-size: 12px; color: var(--text-muted);">
+            Cargar en cada lado de la barra: <strong id="weightPerSideLabel" style="color: var(--gold-light);">35 kg</strong>
+          </div>
+
+          <!-- Visualización Gráfica de la Barra y Discos -->
+          <div class="barbell-visual">
+            <div class="bar-center"></div>
+            <div id="platesVisual" class="plates-display">
+              <!-- Renderizado visual de discos -->
+            </div>
+            <div class="bar-center"></div>
+          </div>
+
+          <div id="platesTextList" style="font-size: 12px; color: var(--text-main); font-weight: 700;">
+            <!-- Desglose textual -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculadora Rápida de Serie de Descarga (-20%) -->
+      <div class="cgm-card">
+        <div class="card-title-row">
+          <h2 class="card-title">📉 Calculadora de Descarga (−20 %)</h2>
+          <span class="badge-gold">Método JPEREZCOACH</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Calcula automáticamente el peso para la serie de descarga tras la serie pesada.
+        </p>
+        <div class="calc-input-row">
+          <div class="calc-input-field">
+            <label for="topSetInput">Peso de la Serie Pesada (kg)</label>
+            <input type="number" id="topSetInput" value="100" step="2.5">
+          </div>
+          <div class="calc-input-field">
+            <label>Peso de Descarga sugerido</label>
+            <div id="backOffResult" style="padding: 10px; background: #000; border: 1px solid var(--border-gold); color: var(--gold-primary); font-size: 16px; font-weight: 900; border-radius: 6px; text-align: center;">
+              80.0 kg
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculadora de 1RM (Fuerza Máxima Estimada - Inspirado en OpenGym / GitHub-Fitness) -->
+      <div class="cgm-card">
+        <div class="card-title-row">
+          <h2 class="card-title">🎯 Calculadora de Fuerza Máxima (1RM)</h2>
+          <span class="badge-gold">Fórmulas Epley y Brzycki</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Calcula tu repetición máxima teórica y la tabla de porcentajes de entrenamiento:
+        </p>
+        <div class="calc-input-row">
+          <div class="calc-input-field">
+            <label for="onermWeightInput">Peso Levantado (kg)</label>
+            <input type="number" id="onermWeightInput" value="80" step="2.5" min="1">
+          </div>
+          <div class="calc-input-field">
+            <label for="onermRepsInput">Repeticiones Hechas</label>
+            <input type="number" id="onermRepsInput" value="8" step="1" min="1" max="15">
+          </div>
+        </div>
+
+        <div class="onerm-banner">
+          <div>
+            <div class="onerm-label">Tu 1RM Estimado:</div>
+            <div id="onermEstimatedValue" class="onerm-val">101.3 kg</div>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: right;">
+            Peso teórico máximo a 1 repetición
+          </div>
+        </div>
+
+        <!-- Tabla de porcentajes de carga -->
+        <div class="onerm-table-wrap">
+          <div class="onerm-table-title">Porcentajes de Entrenamiento Recomendados:</div>
+          <div class="onerm-table-grid" id="onermPercentagesGrid">
+            <!-- Rellenado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Ajustes de la Aplicación -->
+      <div class="cgm-card">
+        <h2 class="card-title mb-12">⚙️ Ajustes</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
+          <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <span>🔊 Sonido al terminar el descanso</span>
+            <input type="checkbox" id="settingSound" checked style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+          </label>
+
+          <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <span>📳 Vibración en el teléfono</span>
+            <input type="checkbox" id="settingVibrate" checked style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+          </label>
+
+          <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <div>
+              <span style="display: block; font-weight: 700;">⌨️ Teclado táctil de gimnasio</span>
+              <span style="font-size: 11px; color: var(--text-muted);">Botones grandes (+/-) sin abrir el teclado del teléfono</span>
+            </div>
+            <input type="checkbox" id="settingGymKeypad" checked style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+          </label>
+
+          <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <span>⏱️ Tiempo de descanso predeterminado</span>
+            <select id="settingDefaultRest" style="background: var(--bg-input); border: 1px solid var(--border-subtle); color: #fff; padding: 4px 8px; border-radius: 4px;">
+              <option value="60">60 segundos (1 minuto)</option>
+              <option value="90" selected>90 segundos (1 min y medio)</option>
+              <option value="120">120 segundos (2 minutos)</option>
+              <option value="180">180 segundos (3 minutos)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Base de Datos Maestra de Ejercicios y Vídeos (Jose Perez) -->
+      <div class="cgm-card featured">
+        <div class="card-title-row">
+          <h2 class="card-title">📚 Base de Datos de Ejercicios (103)</h2>
+          <span class="badge-gold">Catálogo Maestro</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Base de datos maestra de ejercicios y vídeos de Google Drive. Se asocia automáticamente por nombre a esta rutina y a futuras rutinas de otros clientes:
+        </p>
+
+        <!-- Métricas del catálogo -->
+        <div class="db-stats-row">
+          <div class="db-stat-pill"><strong id="dbTotalCount">103</strong> ejercicios</div>
+          <div class="db-stat-pill ok"><strong id="dbReadyCount">77</strong> con vídeo listo</div>
+          <div class="db-stat-pill warn"><strong id="dbPendingCount">26</strong> a rehacer</div>
+        </div>
+
+        <!-- Buscador y filtro por grupo muscular -->
+        <div style="display: flex; gap: 8px; margin: 12px 0;">
+          <input type="text" id="dbSearchInput" placeholder="Buscar ejercicio (ej. dominadas, press...)" class="cgm-select" style="flex: 2; padding: 8px 12px;">
+          <select id="dbGroupFilter" class="cgm-select" style="flex: 1; min-width: 110px; padding: 8px 10px;">
+            <option value="todos">Todos</option>
+            <option value="Espalda">Espalda</option>
+            <option value="Pecho">Pecho</option>
+            <option value="Pierna">Pierna</option>
+            <option value="Hombro">Hombro</option>
+            <option value="Bíceps">Bíceps</option>
+            <option value="Tríceps">Tríceps</option>
+            <option value="Abdomen">Abdomen</option>
+            <option value="Antebrazo">Antebrazo</option>
+            <option value="Trapecio">Trapecio</option>
+          </select>
+        </div>
+
+        <!-- Lista scrolleable de ejercicios de la BD -->
+        <div id="dbExercisesList" class="db-exercises-list">
+          <!-- Renderizado dinámico desde ejercicios-db.js -->
+        </div>
+      </div>
+
+      <!-- Copia de Seguridad y Datos -->
+      <div class="cgm-card">
+        <h2 class="card-title mb-12">💾 Copia de Seguridad</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+          Tus datos se guardan de forma privada en la memoria de este teléfono. Puedes exportar una copia cuando quieras:
+        </p>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button id="exportDataBtn" class="btn-secondary" style="flex: 1;">
+            📥 Descargar Copia (JSON)
+          </button>
+          <label class="btn-secondary" style="flex: 1; cursor: pointer; text-align: center;">
+            📤 Restaurar Copia
+            <input type="file" id="importDataInput" accept=".json" style="display: none;">
+          </label>
+        </div>
+
+        <button id="resetDataBtn" style="background: transparent; border: none; color: var(--danger); font-size: 11px; margin-top: 14px; cursor: pointer; text-decoration: underline;">
+          Borrar todo el historial y reiniciar de cero
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       CRONÓMETRO DE DESCANSO FLOTANTE
+       =================================================================== -->
+  <div id="restTimerBar" class="rest-timer-bar">
+    <div class="timer-left">
+      <div class="timer-circular-wrap">
+        <svg class="timer-circular-svg" viewBox="0 0 44 44">
+          <circle class="timer-circle-bg" cx="22" cy="22" r="18" />
+          <circle id="timerProgressCircle" class="timer-circle-fg" cx="22" cy="22" r="18" stroke-dasharray="113.1" stroke-dashoffset="0" />
+        </svg>
+      </div>
+      <div>
+        <div id="restTimerSeconds" class="timer-number">01:30</div>
+        <div class="timer-label">Descanso</div>
+      </div>
+    </div>
+
+    <div class="timer-controls">
+      <button id="timerSub15Btn" class="timer-btn-sm">-15s</button>
+      <button id="timerAdd15Btn" class="timer-btn-sm">+15s</button>
+      <button id="timerSkipBtn" class="timer-btn-sm" style="color: var(--gold-light);">Saltar</button>
+      <button id="timerCloseBtn" class="timer-close-btn" title="Cerrar cronómetro">×</button>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       BARRA DE NAVEGACIÓN INFERIOR (100% EN CASTELLANO)
+       =================================================================== -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-tab="tab-routine">
+      <span class="nav-icon">📅</span>
+      <span>Rutina</span>
+    </div>
+
+    <div class="nav-item" data-tab="tab-workout">
+      <span class="nav-icon" id="workoutNavIcon">🏋️</span>
+      <span>Entrenar</span>
+    </div>
+
+    <div class="nav-item" data-tab="tab-history">
+      <span class="nav-icon">📈</span>
+      <span>Récords</span>
+    </div>
+
+    <div class="nav-item" data-tab="tab-tools">
+      <span class="nav-icon">⚖️</span>
+      <span>Herramientas</span>
+    </div>
+  </nav>
+
+  <!-- ===================================================================
+       VENTANA DE RESUMEN AL FINALIZAR
+       =================================================================== -->
+  <div id="summaryModal" class="modal-overlay">
+    <div class="modal-content text-center">
+      <div style="font-size: 48px; margin-bottom: 8px;">🏆</div>
+      <h3 style="font-size: 20px; font-weight: 900; margin-bottom: 4px; color: var(--gold-light);">
+        ¡ENTRENAMIENTO COMPLETADO!
+      </h3>
+      <p id="summaryWorkoutName" style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+        1 PULL: Espalda y Bíceps · JPEREZCOACH
+      </p>
+
+      <div class="cgm-card" style="background: #000; border-color: var(--border-gold); padding: 14px; margin-bottom: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div>
+            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Tiempo</div>
+            <div id="summaryDuration" style="font-size: 17px; font-weight: 800; color: #fff;">45 min</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Volumen</div>
+            <div id="summaryVolume" style="font-size: 17px; font-weight: 800; color: var(--gold-primary);">8.450 kg</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Series</div>
+            <div id="summarySets" style="font-size: 17px; font-weight: 800; color: #fff;">18</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="summaryPrsSection" style="display: none; margin-bottom: 16px; text-align: left;">
+        <div style="font-size: 12px; font-weight: 800; color: var(--gold-light); margin-bottom: 6px;">
+          🔥 Nuevos Récords Personales:
+        </div>
+        <div id="summaryPrsList"></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button id="shareWhatsAppBtn" class="btn-primary" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff;">
+          <span>💬</span> Compartir Resumen por WhatsApp
+        </button>
+
+        <button id="closeSummaryModalBtn" class="btn-secondary">
+          Guardar y Volver a la Rutina
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL DE VÍDEO RÁPIDO DE TÉCNICA (LIMPIO Y SIN CONTROLES MOLESTOS)
+       =================================================================== -->
+  <div id="videoModal" class="modal-overlay">
+    <div class="video-modal-content">
+      <div class="video-modal-header">
+        <h3 id="videoModalExerciseName" class="video-modal-title">Ejercicio</h3>
+        <button id="closeVideoModalBtn" class="video-modal-close" aria-label="Cerrar vídeo">✕</button>
+      </div>
+
+      <!-- Barra de pestañas simple: Jose Perez o Guía -->
+      <div class="video-source-switcher">
+        <button id="btnTabDrive" class="video-source-tab active" type="button">🎬 Jose Perez</button>
+        <button id="btnTabYoutube" class="video-source-tab" type="button">📺 Guía alternativa</button>
+        <a id="btnOpenDriveDirect" class="video-direct-link-btn" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">↗️ Pantalla completa</a>
+      </div>
+
+      <!-- Reproductor: Vídeo nativo limpio en bucle sin barra de tiempo ni pausa -->
+      <div id="videoPlayerWrapper" class="video-player-wrapper">
+        <video id="videoNativePlayer" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; background: #000; display: block;"></video>
+        <iframe id="videoIframe" class="video-iframe" src="" allow="autoplay; fullscreen; encrypted-media" allowfullscreen style="display: none;"></iframe>
+      </div>
+
+      <!-- Indicación técnica y botón de cierre -->
+      <div class="video-modal-footer">
+        <p id="videoModalNotes" class="video-modal-notes"></p>
+        <button id="closeVideoModalFooterBtn" class="btn-primary" style="width: 100%; margin-top: 8px;">
+          ✓ Listo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       TECLADO TÁCTIL DE GIMNASIO (CGM SMART KEYPAD)
+       Ajuste de KG y Repeticiones con botones gigantes táctiles (+/-) sin teclado del móvil
+       =================================================================== -->
+  <div id="gymKeypadSheet" class="gym-keypad-sheet">
+    <div class="gym-keypad-backdrop" id="gymKeypadBackdrop"></div>
+    <div class="gym-keypad-panel">
+      <!-- Barra superior: Ejercicio y selector de serie -->
+      <div class="gym-keypad-header">
+        <div class="gym-keypad-title-wrap">
+          <span id="keypadExName" class="gym-keypad-ex-name">Ejercicio</span>
+          <span id="keypadSetBadge" class="gym-keypad-set-badge">Serie 1</span>
+        </div>
+        <button id="closeKeypadBtn" class="gym-keypad-close" type="button" aria-label="Cerrar teclado">✕</button>
+      </div>
+
+      <!-- Pantalla dual interactiva de valores actuales -->
+      <div class="gym-keypad-display-row">
+        <button id="keypadTabWeight" class="keypad-val-tab active" type="button">
+          <span class="keypad-tab-label">PESO</span>
+          <span class="keypad-tab-value"><strong id="keypadDisplayWeight">0</strong> <small>kg</small></span>
+        </button>
+
+        <button id="keypadTabReps" class="keypad-val-tab" type="button">
+          <span class="keypad-tab-label">REPETICIONES</span>
+          <span class="keypad-tab-value"><strong id="keypadDisplayReps">0</strong> <small>reps</small></span>
+        </button>
+
+        <button id="keypadCopyPrevBtn" class="keypad-copy-btn" type="button" title="Copiar marca de la sesión anterior">
+          <span>📋</span>
+          <small id="keypadPrevHint">Copiar</small>
+        </button>
+      </div>
+
+      <!-- Fila de modificadores rápidos inteligentes (Steppers +/-) -->
+      <div id="keypadWeightSteppers" class="keypad-steppers-row">
+        <button class="keypad-step-btn neg" data-delta="-10">-10</button>
+        <button class="keypad-step-btn neg" data-delta="-5">-5</button>
+        <button class="keypad-step-btn neg" data-delta="-2.5">-2.5</button>
+        <button class="keypad-step-btn neg" data-delta="-1">-1</button>
+        <button class="keypad-step-btn pos" data-delta="+1">+1</button>
+        <button class="keypad-step-btn pos" data-delta="+2.5">+2.5</button>
+        <button class="keypad-step-btn pos" data-delta="+5">+5</button>
+        <button class="keypad-step-btn pos" data-delta="+10">+10</button>
+      </div>
+
+      <div id="keypadRepsSteppers" class="keypad-steppers-row" style="display: none;">
+        <button class="keypad-step-btn neg" data-rep-delta="-2">-2</button>
+        <button class="keypad-step-btn neg" data-rep-delta="-1">-1</button>
+        <button class="keypad-step-btn pos" data-rep-delta="+1">+1</button>
+        <button class="keypad-step-btn pos" data-rep-delta="+2">+2</button>
+        <button class="keypad-preset-rep" data-rep-set="6">6</button>
+        <button class="keypad-preset-rep" data-rep-set="8">8</button>
+        <button class="keypad-preset-rep" data-rep-set="10">10</button>
+        <button class="keypad-preset-rep" data-rep-set="12">12</button>
+        <button class="keypad-preset-rep" data-rep-set="15">15</button>
+      </div>
+
+      <!-- Teclado Numérico Táctil Ergonómico -->
+      <div class="gym-numpad-grid">
+        <button class="numpad-key" data-key="1">1</button>
+        <button class="numpad-key" data-key="2">2</button>
+        <button class="numpad-key" data-key="3">3</button>
+        <button class="numpad-key" data-key="4">4</button>
+        <button class="numpad-key" data-key="5">5</button>
+        <button class="numpad-key" data-key="6">6</button>
+        <button class="numpad-key" data-key="7">7</button>
+        <button class="numpad-key" data-key="8">8</button>
+        <button class="numpad-key" data-key="9">9</button>
+        <button class="numpad-key" data-key=".">.</button>
+        <button class="numpad-key" data-key="0">0</button>
+        <button class="numpad-key del" data-key="backspace">⌫</button>
+      </div>
+
+      <!-- Barra de acciones de navegación rápida -->
+      <div class="gym-keypad-actions">
+        <button id="keypadNativeKeyboardBtn" class="keypad-action-ghost" type="button" title="Abrir teclado normal del móvil">
+          ⌨️ Móvil
+        </button>
+        <button id="keypadNextFieldBtn" class="keypad-action-next" type="button">
+          Siguiente ➔
+        </button>
+        <button id="keypadDoneSetBtn" class="keypad-action-done" type="button">
+          ✓ Marcar Hecha
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODALES DE GESTIÓN DE RUTINAS PERSONALIZADAS Y PDF (v12)
+       =================================================================== -->
+
+  <!-- Modal de Autenticación de Administrador -->
+  <div id="adminLoginModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 380px;">
+      <div class="modal-header">
+        <h3>🔐 Acceso de Administrador</h3>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4;">
+        Introduce la clave de entrenador para gestionar rutinas personalizadas y subir archivos PDF.
+      </p>
+      <div style="margin-bottom: 14px;">
+        <input type="password" id="adminPasswordInput" class="admin-input-text" placeholder="Contraseña de administrador" autocomplete="current-password">
+        <div id="adminLoginError" style="display:none; color: var(--danger); font-size: 12px; margin-top: 6px;"></div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button id="adminLoginSubmitBtn" class="btn-primary" style="flex: 1;">Entrar</button>
+        <button id="adminLoginCancelBtn" class="btn-secondary" style="flex: 1;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal del Panel de Administrador -->
+  <div id="adminPanelModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 580px; max-height: 85vh; display: flex; flex-direction: column;">
+      <div class="modal-header">
+        <h3>👑 Panel de Rutinas Personalizadas</h3>
+        <button id="closeAdminPanelBtn" class="video-modal-close" type="button" aria-label="Cerrar panel">✕</button>
+      </div>
+      <div style="padding: 6px 0 12px 0; display: flex; gap: 8px; flex-wrap: wrap;">
+        <button id="btnAdminNewFromPdf" class="btn-primary" style="flex: 1; min-width: 180px;">
+          <span>📄</span> Crear Rutina desde PDF
+        </button>
+        <button id="btnAdminImportJson" class="btn-secondary" style="min-width: 140px;">
+          <span>📥</span> Importar JSON
+        </button>
+        <input type="file" id="adminImportJsonInput" accept=".json" style="display:none;">
+        <button id="btnAdminLogout" class="btn-sm-action danger" style="padding: 8px 12px; font-size: 12px;" title="Cerrar sesión de administrador">
+          Cerrar Sesión
+        </button>
+      </div>
+      <div class="section-heading" style="margin-top: 6px; margin-bottom: 8px;">
+        <span>Tus Rutinas Creadas</span>
+      </div>
+      <div id="adminRoutinesList" class="admin-routines-scrollable" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px;">
+        <!-- Generado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Subida de Archivo PDF -->
+  <div id="pdfUploadModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>📄 Subir Rutina en PDF</h3>
+        <button id="closePdfModalBtn" class="video-modal-close" type="button" aria-label="Cerrar subida">✕</button>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4;">
+        Arrastra aquí el PDF del entrenamiento del cliente o pulsa para seleccionarlo. El archivo se procesa 100% en tu navegador de forma segura y privada.
+      </p>
+      <div id="pdfDropZone" class="pdf-drop-zone">
+        <div style="font-size: 40px; margin-bottom: 8px;">📑</div>
+        <strong>Arrastra tu PDF aquí</strong>
+        <span style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">o pulsa para explorar archivos</span>
+        <input type="file" id="pdfFileInput" accept=".pdf" style="display: none;">
+      </div>
+      <div id="pdfUploadStatus" style="display:none; align-items:center; gap:10px; margin-top:14px; padding:10px 14px; background:rgba(212,175,55,0.1); border-radius:8px; border:1px solid rgba(212,175,55,0.3);">
+        <div class="admin-spinner"></div>
+        <span id="pdfUploadStatusText" style="font-size:13px; color:var(--gold-light);">Analizando PDF y extrayendo ejercicios...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Revisión y Corrección de Rutina Antes de Guardar -->
+  <div id="routineReviewModal" class="modal-overlay">
+    <div class="modal-content review-modal-card">
+      <div class="modal-header">
+        <h3>🔍 Revisión del Plan Extraído</h3>
+      </div>
+      <div class="review-meta-grid">
+        <div>
+          <label class="review-label">Título de la Rutina:</label>
+          <input type="text" id="reviewRoutineTitle" class="admin-input-text" placeholder="Ej. Rutina Frecuencia 1.5 - 4 Días">
+        </div>
+        <div>
+          <label class="review-label">Cliente / Atleta:</label>
+          <input type="text" id="reviewClientName" class="admin-input-text" placeholder="Ej. Jose Perez o Nombre del cliente">
+        </div>
+      </div>
+      <div class="section-heading" style="margin-top: 10px; margin-bottom: 8px;">
+        <span>Días y Ejercicios Detectados (con asignación de vídeo)</span>
+      </div>
+      <div id="reviewDaysContainer" class="review-days-container">
+        <!-- Generado dinámicamente -->
+      </div>
+      <div class="review-modal-footer">
+        <button id="btnSaveRoutineReview" class="btn-primary" style="flex: 2;">
+          ✓ Guardar y Activar Rutina
+        </button>
+        <button id="btnCancelRoutineReview" class="btn-secondary" style="flex: 1;">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Buscador de Ejercicios en Base de Datos de Jose Perez -->
+  <div id="videoPickerModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 500px; max-height: 80vh; display: flex; flex-direction: column;">
+      <div class="modal-header">
+        <h3>🎬 Asociar Vídeo de Jose Perez</h3>
+        <button id="closeVideoPickerBtn" class="video-modal-close" type="button" aria-label="Cerrar selector">✕</button>
+      </div>
+      <div style="margin-bottom: 10px;">
+        <input type="text" id="videoPickerSearchInput" class="admin-input-text" placeholder="Buscar ejercicio o grupo muscular...">
+      </div>
+      <div id="videoPickerResultsList" class="video-picker-scrollable" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding-right: 4px;">
+        <!-- Generado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Compartir Enlace Mágico por WhatsApp -->
+  <div id="magicLinkModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>📲 Compartir con el Cliente</h3>
+        <button id="closeMagicLinkBtn" class="video-modal-close" type="button" aria-label="Cerrar">✕</button>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+        Envía este enlace privado a tu cliente por WhatsApp. Al tocarlo en su móvil, la rutina se cargará automáticamente en su teléfono sin necesidad de contraseñas ni archivos.
+      </p>
+      
+      <div style="background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 14px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
+          <span style="font-size: 12px; color: var(--text-dim);">Mensaje listo para WhatsApp:</span>
+          <span id="magicLinkCopiedBadge" style="display:none; font-size: 11px; color: #4ade80; font-weight:700;">✓ ¡Copiado!</span>
+        </div>
+        <textarea id="magicLinkMessagePreview" class="admin-input-text" rows="5" readonly style="resize:none; font-size:12px; font-family: inherit; line-height:1.4; color:var(--text-main);"></textarea>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a id="btnOpenWhatsAppDirect" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px;">
+          <span style="font-size: 18px;">💬</span> Enviar por WhatsApp
+        </a>
+
+        <div style="display: flex; gap: 8px;">
+          <button id="btnCopyMagicLinkOnly" class="btn-secondary" style="flex: 1; font-size: 12px;">
+            🔗 Copiar Solo Enlace
+          </button>
+          <button id="btnCopyFullMessage" class="btn-secondary" style="flex: 1; font-size: 12px;">
+            📋 Copiar Mensaje
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Bienvenida para Rutina Importada desde Enlace Mágico -->
+  <div id="welcomeRoutineModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 440px; text-align: center; padding: 26px 20px;">
+      <div style="font-size: 48px; margin-bottom: 8px;">🏆</div>
+      <span class="badge-gold" style="margin-bottom: 10px; display: inline-block;">¡Rutina Asignada con Éxito!</span>
+      <h3 id="welcomeRoutineTitle" style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #fff;">Plan Personalizado</h3>
+      <p id="welcomeRoutineClient" style="font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 14px;"></p>
+      
+      <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">
+        Tu entrenador te ha configurado esta rutina con todos los vídeos oficiales de técnica de Jose Perez y registro inteligente de pesos. Está guardada en tu teléfono lista para usar.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button id="btnStartWelcomeRoutine" class="btn-primary" style="width: 100%; padding: 12px;">
+          <span>▶</span> ¡Empezar a Entrenar!
+        </button>
+        <button id="btnCloseWelcomeModal" class="btn-secondary" style="width: 100%;">
+          Ver Selección de Días
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminToast" class="admin-toast"></div>
+
+  <!-- Scripts con control de versión y auto-limpieza -->
+  <script>
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (var i = 0; i < names.length; i++) {
+          if (names[i] !== 'jperezcoach-v1') {
+            caches.delete(names[i]);
+          }
+        }
+      });
+    }
+  </script>
+  <script src="lib/pdf.min.js"></script>
+  <script src="lib/pdf.worker.min.js"></script>
+  <script src="ejercicios-db.js?v=1"></script>
+  <script src="routine-data.js?v=1"></script>
+  <script src="pdf-rutina-parser.js?v=1"></script>
+  <script src="rutinas-personalizadas.js?v=1"></script>
+  <script src="rutina-pdf-ui.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
