@@ -2,7 +2,7 @@
 // SERVICE WORKER · JPEREZCOACH (OFFLINE PWA - NETWORK FIRST)
 // =============================================================================
 
-const CACHE_NAME = 'jperezcoach-v3';
+const CACHE_NAME = 'jperezcoach-v4';
 
 const ASSETS_TO_CACHE = [
   './',
@@ -21,6 +21,8 @@ const ASSETS_TO_CACHE = [
   './icon-512-maskable.png',
   './apple-touch-icon.png',
   './favicon-32.png',
+  './og-image.jpg',
+  './og-image.png',
   './icon.svg',
   './banner.jpg',
   './coach.png',
