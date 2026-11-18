@@ -1,4 +1,4 @@
-// =============================================================================
+﻿// =============================================================================
 // DATOS DE LA RUTINA OFICIAL · JPEREZCOACH
 // Plan de Entrenamiento Personalizado de 6 Días Rotativos · Alta Intensidad e Hipertrofia
 // Atleta: David Otero | Entrenador: Jose Perez
@@ -533,6 +533,6 @@
   };
 
   // Compatibilidad hacia atrás
-  window.CGM_DATOS = window.JP_DATOS;
+  window.JPEREZ_DATOS = window.JP_DATOS;
 
 })();

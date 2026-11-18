@@ -54,7 +54,7 @@
 
     html += '<div class="routine-select-control-row">';
     html += '  <select id="selectRutinaActiva" class="routine-custom-select">';
-    html += '    <option value="oficial_cgm"' + (rutinaActivaId === 'oficial_cgm' ? ' selected' : '') + '>⭐ Rutina Oficial CGM (Jose Perez · 4 Días)</option>';
+    html += '    <option value="oficial_jperez"' + (rutinaActivaId === 'oficial_jperez' ? ' selected' : '') + '>⭐ Rutina Oficial (Jose Perez · 6 Días Rotativos)</option>';
 
     for (var i = 0; i < rutinas.length; i++) {
       var r = rutinas[i];
@@ -73,8 +73,8 @@
         var nuevaId = selectEl.value;
         global.JP_RUTINAS_PERSONALIZADAS.establecerRutinaActiva(nuevaId);
         mostrarNotificacion('Rutina cambiada correctamente', 'exito');
-        if (typeof global.cgmRecargarRutinaVisual === 'function') {
-          global.cgmRecargarRutinaVisual();
+        if (typeof global.jpRecargarRutinaVisual === 'function') {
+          global.jpRecargarRutinaVisual();
         }
       });
     }
@@ -220,7 +220,7 @@
           renderizarListaRutinasAdmin();
           renderizarSelectorRutinas();
           mostrarNotificacion('Rutina activada para entrenar', 'exito');
-          if (typeof global.cgmRecargarRutinaVisual === 'function') global.cgmRecargarRutinaVisual();
+          if (typeof global.jpRecargarRutinaVisual === 'function') global.jpRecargarRutinaVisual();
         });
       })(btnsSelect[s]);
     }
@@ -268,7 +268,7 @@
             renderizarListaRutinasAdmin();
             renderizarSelectorRutinas();
             mostrarNotificacion('Rutina eliminada', 'aviso');
-            if (typeof global.cgmRecargarRutinaVisual === 'function') global.cgmRecargarRutinaVisual();
+            if (typeof global.jpRecargarRutinaVisual === 'function') global.jpRecargarRutinaVisual();
           }
         });
       })(btnsDel[dl]);
@@ -338,8 +338,8 @@
       var rutinaImportada = await global.JP_RUTINAS_PERSONALIZADAS.procesarEnlaceMagico();
       if (rutinaImportada) {
         renderizarSelectorRutinas();
-        if (typeof global.cgmRecargarRutinaVisual === 'function') {
-          global.cgmRecargarRutinaVisual();
+        if (typeof global.jpRecargarRutinaVisual === 'function') {
+          global.jpRecargarRutinaVisual();
         }
         abrirModalBienvenidaRutina(rutinaImportada);
       }
@@ -378,7 +378,7 @@
     if (statusText) statusText.textContent = 'Analizando PDF y extrayendo ejercicios...';
 
     try {
-      var rutinaExtraida = await window.CGM_PDF_RUTINA_PARSER.parsear(archivo);
+      var rutinaExtraida = await window.JP_PDF_RUTINA_PARSER.parsear(archivo);
 
       if (!rutinaExtraida.dias || rutinaExtraida.dias.length === 0) {
         rutinaExtraida.dias = [{
@@ -447,7 +447,7 @@
 
       for (var e = 0; e < dia.ejercicios.length; e++) {
         var ex = dia.ejercicios[e];
-        var db = ex.dbCoincidencia || (ex.dbMatchId && window.CGM_BASE_DATOS_EJERCICIOS ? window.CGM_BASE_DATOS_EJERCICIOS.buscar(ex.dbMatchId) : null);
+        var db = ex.dbCoincidencia || (ex.dbMatchId && window.JP_BASE_DATOS_EJERCICIOS ? window.JP_BASE_DATOS_EJERCICIOS.buscar(ex.dbMatchId) : null);
         var badgeVideo = '';
 
         if (db) {
@@ -675,9 +675,9 @@
 
   function renderizarResultadosBuscadorVideo(filtro) {
     var listaContenedor = $('videoPickerResultsList');
-    if (!listaContenedor || !window.CGM_BASE_DATOS_EJERCICIOS) return;
+    if (!listaContenedor || !window.JP_BASE_DATOS_EJERCICIOS) return;
 
-    var lista = window.CGM_BASE_DATOS_EJERCICIOS.lista || [];
+    var lista = window.JP_BASE_DATOS_EJERCICIOS.lista || [];
     var fNorm = (filtro || '').toLowerCase().trim();
 
     var filtrados = lista.filter(function(item) {
@@ -718,7 +718,7 @@
             targetEx.dbMatchId = null;
           } else {
             var exId = el.dataset.id;
-            var matchBD = window.CGM_BASE_DATOS_EJERCICIOS.buscar(exId);
+            var matchBD = window.JP_BASE_DATOS_EJERCICIOS.buscar(exId);
             targetEx.dbCoincidencia = matchBD;
             targetEx.dbMatchId = exId;
           }
@@ -756,8 +756,8 @@
     renderizarSelectorRutinas();
     mostrarNotificacion('¡Rutina guardada y activada con éxito!', 'exito');
 
-    if (typeof global.cgmRecargarRutinaVisual === 'function') {
-      global.cgmRecargarRutinaVisual();
+    if (typeof global.jpRecargarRutinaVisual === 'function') {
+      global.jpRecargarRutinaVisual();
     }
   }
 
@@ -931,8 +931,8 @@
     if (btnStartWelcome) {
       btnStartWelcome.addEventListener('click', function() {
         cerrarModalBienvenidaRutina();
-        if (typeof global.cgmRecargarRutinaVisual === 'function') {
-          global.cgmRecargarRutinaVisual();
+        if (typeof global.jpRecargarRutinaVisual === 'function') {
+          global.jpRecargarRutinaVisual();
         }
       });
     }
@@ -955,4 +955,4 @@
 
 })(typeof window !== 'undefined' ? window : this);
 
-window.CGM_RUTINA_PDF_UI = window.JP_RUTINA_PDF_UI;
+window.JPEREZ_RUTINA_PDF_UI = window.JP_RUTINA_PDF_UI;

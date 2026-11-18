@@ -13,9 +13,9 @@
     ADMIN_SESION: 'jperez_admin_sesion_activa'
   };
 
-  // Hash SHA-256 predeterminado de la clave maestra de administrador ("cgm2026")
+  // Hash SHA-256 predeterminado de la clave maestra de administrador ("jperez2026")
   // Ninguna contraseña en texto plano está expuesta en el código fuente
-  var HASH_ADMIN_DEFAULT = '83bfdadda0d6802f112ee6cdd0b51500dc6f7ca31da7904041dc031141fd9869';
+  var HASH_ADMIN_DEFAULT = 'd94b28a6f9efdd29d1ce52847a4f04258ab81e66502822e89692105654574267';
 
   // Función criptográfica nativa del navegador para SHA-256
   async function calcularHashSHA256(cadena) {
@@ -313,10 +313,10 @@
         descripcion: (d.n || ('Día ' + (dIdx + 1))) + ' · ' + c.t,
         ejercicios: (d.e || []).map(function(ex, eIdx) {
           var dbMatch = null;
-          if (ex.m && window.CGM_BASE_DATOS_EJERCICIOS && window.CGM_BASE_DATOS_EJERCICIOS.buscar) {
-            dbMatch = window.CGM_BASE_DATOS_EJERCICIOS.buscar(ex.m);
-          } else if (window.CGM_BASE_DATOS_EJERCICIOS && window.CGM_BASE_DATOS_EJERCICIOS.buscar) {
-            dbMatch = window.CGM_BASE_DATOS_EJERCICIOS.buscar(ex.n);
+          if (ex.m && window.JP_BASE_DATOS_EJERCICIOS && window.JP_BASE_DATOS_EJERCICIOS.buscar) {
+            dbMatch = window.JP_BASE_DATOS_EJERCICIOS.buscar(ex.m);
+          } else if (window.JP_BASE_DATOS_EJERCICIOS && window.JP_BASE_DATOS_EJERCICIOS.buscar) {
+            dbMatch = window.JP_BASE_DATOS_EJERCICIOS.buscar(ex.n);
           }
 
           var series = (ex.s || []).map(function(s, sIdx) {
@@ -505,4 +505,4 @@
 
 })(typeof window !== 'undefined' ? window : this);
 
-window.CGM_RUTINAS_PERSONALIZADAS = window.JP_RUTINAS_PERSONALIZADAS;
+window.JPEREZ_RUTINAS_PERSONALIZADAS = window.JP_RUTINAS_PERSONALIZADAS;

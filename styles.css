@@ -1,6 +1,6 @@
 ﻿/* ==========================================================================
-   CGM PERFORMANCE · RUTINA FRECUENCIA 1,5 · ESTILOS MOBILE-FIRST
-   Branding: Carlos Graña - Negro Obsidiana & Oro Metálico
+   JPEREZCOACH · PLAN DE ENTRENAMIENTO 6 DÍAS · ESTILOS MOBILE-FIRST
+   Branding: Jose Perez Coach · Charcoal & Athletic Cyan
    ========================================================================== */
 
 :root {
@@ -190,7 +190,7 @@ body {
 /* ==========================================================================
    CARDS & COMPONENTES REUTILIZABLES
    ========================================================================== */
-.cgm-card {
+.jp-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -201,12 +201,12 @@ body {
   overflow: hidden;
 }
 
-.cgm-card.featured {
+.jp-card.featured {
   border-color: var(--border-gold);
   background: linear-gradient(180deg, #161b26 0%, #11141c 100%);
 }
 
-.cgm-card.featured::before {
+.jp-card.featured::before {
   content: "";
   position: absolute;
   top: 0;
@@ -504,7 +504,7 @@ body {
   color: var(--text-muted);
 }
 
-/* Reglas CGM / Info Box */
+/* Reglas del Plan / Info Box */
 .rules-box {
   background: rgba(19, 22, 31, 0.85);
   border: 1px solid rgba(212, 175, 55, 0.25);
@@ -1388,8 +1388,8 @@ body {
   margin-top: 2px;
 }
 
-/* Selectores estilizados CGM */
-.cgm-select {
+/* Selectores estilizados */
+.jp-select {
   background: var(--bg-input);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-sm);
@@ -1402,7 +1402,7 @@ body {
   cursor: pointer;
 }
 
-.cgm-select:focus {
+.jp-select:focus {
   border-color: var(--gold-light);
   box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
 }
@@ -1903,7 +1903,7 @@ body {
 }
 
 /* ==========================================================================
-   TECLADO TÁCTIL DE GIMNASIO (CGM SMART KEYPAD) Y ATALHOS DE 1 TOQUE
+   TECLADO TÁCTIL DE GIMNASIO (JP SMART KEYPAD) Y ATAJOS DE 1 TOQUE
    ========================================================================== */
 .previous-hint.copyable {
   cursor: pointer;

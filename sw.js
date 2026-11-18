@@ -2,18 +2,18 @@
 // SERVICE WORKER · JPEREZCOACH (OFFLINE PWA - NETWORK FIRST)
 // =============================================================================
 
-const CACHE_NAME = 'jperezcoach-v2';
+const CACHE_NAME = 'jperezcoach-v3';
 
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=7',
-  './app.js?v=2',
-  './routine-data.js?v=2',
-  './ejercicios-db.js?v=2',
-  './rutinas-personalizadas.js?v=2',
-  './pdf-rutina-parser.js?v=2',
-  './rutina-pdf-ui.js?v=2',
+  './styles.css?v=8',
+  './app.js?v=3',
+  './routine-data.js?v=3',
+  './ejercicios-db.js?v=3',
+  './rutinas-personalizadas.js?v=3',
+  './pdf-rutina-parser.js?v=3',
+  './rutina-pdf-ui.js?v=3',
   './manifest.webmanifest',
   './icon.png',
   './icon-192.png',

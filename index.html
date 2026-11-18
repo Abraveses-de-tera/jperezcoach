@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
   
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
@@ -161,7 +161,7 @@
         <span style="font-size: 11px; color: var(--text-dim);">Frecuencia adaptada</span>
       </div>
 
-      <div class="cgm-card" style="padding: 12px 14px;">
+      <div class="jp-card" style="padding: 12px 14px;">
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
           Si te saltas un día por trabajo o descanso, simplemente continúas con el siguiente día de la lista cuando vuelvas al gimnasio:
         </p>
@@ -193,7 +193,7 @@
     <section id="tab-workout" class="tab-view">
       
       <!-- Estado cuando NO hay entrenamiento iniciado -->
-      <div id="noActiveWorkoutView" class="cgm-card text-center" style="padding: 36px 16px;">
+      <div id="noActiveWorkoutView" class="jp-card text-center" style="padding: 36px 16px;">
         <div style="font-size: 44px; margin-bottom: 12px;">🏋️</div>
         <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">No hay ningún entrenamiento en curso</h3>
         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
@@ -230,7 +230,7 @@
         </div>
 
         <!-- Botones de Finalización -->
-        <div class="cgm-card finish-workout-card">
+        <div class="jp-card finish-workout-card">
           <button id="finishWorkoutBtn" class="btn-finish">
             🏆 GUARDAR Y FINALIZAR ENTRENAMIENTO
           </button>
@@ -268,7 +268,7 @@
       </div>
 
       <!-- Gráfico de Sobrecarga Progresiva (Inspirado en Gym-Tracker) -->
-      <div class="cgm-card featured" style="margin-top: 14px;">
+      <div class="jp-card featured" style="margin-top: 14px;">
         <div class="card-title-row">
           <h2 class="card-title">📈 Curva de Sobrecarga Progresiva</h2>
           <span id="chartGainBadge" class="badge-gold">+0 kg</span>
@@ -280,7 +280,7 @@
         <!-- Selector de Ejercicio para la gráfica -->
         <div style="margin-bottom: 14px;">
           <label for="progressionExerciseSelect" style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 700; text-transform: uppercase;">Selecciona el ejercicio:</label>
-          <select id="progressionExerciseSelect" class="cgm-select" style="width: 100%;">
+          <select id="progressionExerciseSelect" class="jp-select" style="width: 100%;">
             <!-- Rellenado dinámicamente con todos los ejercicios -->
           </select>
         </div>
@@ -296,7 +296,7 @@
         <span class="badge-gold">Tus Mejores Marcas</span>
       </div>
 
-      <div class="cgm-card">
+      <div class="jp-card">
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
           Tus pesos máximos registrados en cada ejercicio:
         </p>
@@ -322,7 +322,7 @@
     <section id="tab-tools" class="tab-view">
       
       <!-- Calculadora de Discos -->
-      <div class="cgm-card featured">
+      <div class="jp-card featured">
         <div class="card-title-row">
           <h2 class="card-title">⚖️ Calculadora de Discos</h2>
           <span class="badge-gold">Por lado de la barra</span>
@@ -365,7 +365,7 @@
       </div>
 
       <!-- Calculadora Rápida de Serie de Descarga (-20%) -->
-      <div class="cgm-card">
+      <div class="jp-card">
         <div class="card-title-row">
           <h2 class="card-title">📉 Calculadora de Descarga (−20 %)</h2>
           <span class="badge-gold">Método JPEREZCOACH</span>
@@ -388,7 +388,7 @@
       </div>
 
       <!-- Calculadora de 1RM (Fuerza Máxima Estimada - Inspirado en OpenGym / GitHub-Fitness) -->
-      <div class="cgm-card">
+      <div class="jp-card">
         <div class="card-title-row">
           <h2 class="card-title">🎯 Calculadora de Fuerza Máxima (1RM)</h2>
           <span class="badge-gold">Fórmulas Epley y Brzycki</span>
@@ -427,7 +427,7 @@
       </div>
 
       <!-- Ajustes de la Aplicación -->
-      <div class="cgm-card">
+      <div class="jp-card">
         <h2 class="card-title mb-12">⚙️ Ajustes</h2>
         
         <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
@@ -462,7 +462,7 @@
       </div>
 
       <!-- Base de Datos Maestra de Ejercicios y Vídeos (Jose Perez) -->
-      <div class="cgm-card featured">
+      <div class="jp-card featured">
         <div class="card-title-row">
           <h2 class="card-title">📚 Base de Datos de Ejercicios (103)</h2>
           <span class="badge-gold">Catálogo Maestro</span>
@@ -480,8 +480,8 @@
 
         <!-- Buscador y filtro por grupo muscular -->
         <div style="display: flex; gap: 8px; margin: 12px 0;">
-          <input type="text" id="dbSearchInput" placeholder="Buscar ejercicio (ej. dominadas, press...)" class="cgm-select" style="flex: 2; padding: 8px 12px;">
-          <select id="dbGroupFilter" class="cgm-select" style="flex: 1; min-width: 110px; padding: 8px 10px;">
+          <input type="text" id="dbSearchInput" placeholder="Buscar ejercicio (ej. dominadas, press...)" class="jp-select" style="flex: 2; padding: 8px 12px;">
+          <select id="dbGroupFilter" class="jp-select" style="flex: 1; min-width: 110px; padding: 8px 10px;">
             <option value="todos">Todos</option>
             <option value="Espalda">Espalda</option>
             <option value="Pecho">Pecho</option>
@@ -502,7 +502,7 @@
       </div>
 
       <!-- Copia de Seguridad y Datos -->
-      <div class="cgm-card">
+      <div class="jp-card">
         <h2 class="card-title mb-12">💾 Copia de Seguridad</h2>
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
           Tus datos se guardan de forma privada en la memoria de este teléfono. Puedes exportar una copia cuando quieras:
@@ -590,7 +590,7 @@
         1 PULL: Espalda y Bíceps · JPEREZCOACH
       </p>
 
-      <div class="cgm-card" style="background: #000; border-color: var(--border-gold); padding: 14px; margin-bottom: 16px;">
+      <div class="jp-card" style="background: #000; border-color: var(--border-gold); padding: 14px; margin-bottom: 16px;">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <div>
             <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Tiempo</div>
@@ -667,7 +667,7 @@
   </div>
 
   <!-- ===================================================================
-       TECLADO TÁCTIL DE GIMNASIO (CGM SMART KEYPAD)
+       TECLADO TÁCTIL DE GIMNASIO (JP SMART KEYPAD)
        Ajuste de KG y Repeticiones con botones gigantes táctiles (+/-) sin teclado del móvil
        =================================================================== -->
   <div id="gymKeypadSheet" class="gym-keypad-sheet">
@@ -945,7 +945,7 @@
     if ('caches' in window) {
       caches.keys().then(function(names) {
         for (var i = 0; i < names.length; i++) {
-          if (names[i] !== 'jperezcoach-v2') {
+          if (names[i] !== 'jperezcoach-v3') {
             caches.delete(names[i]);
           }
         }
@@ -954,11 +954,11 @@
   </script>
   <script src="lib/pdf.min.js"></script>
   <script src="lib/pdf.worker.min.js"></script>
-  <script src="ejercicios-db.js?v=2"></script>
-  <script src="routine-data.js?v=2"></script>
-  <script src="pdf-rutina-parser.js?v=2"></script>
-  <script src="rutinas-personalizadas.js?v=2"></script>
-  <script src="rutina-pdf-ui.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="ejercicios-db.js?v=3"></script>
+  <script src="routine-data.js?v=3"></script>
+  <script src="pdf-rutina-parser.js?v=3"></script>
+  <script src="rutinas-personalizadas.js?v=3"></script>
+  <script src="rutina-pdf-ui.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

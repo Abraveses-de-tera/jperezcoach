@@ -237,6 +237,6 @@
   };
 
   // Compatibilidad hacia atrás
-  global.CGM_BASE_DATOS_EJERCICIOS = global.JP_BASE_DATOS_EJERCICIOS;
+  global.JPEREZ_BASE_DATOS_EJERCICIOS = global.JP_BASE_DATOS_EJERCICIOS;
 
 })(window);

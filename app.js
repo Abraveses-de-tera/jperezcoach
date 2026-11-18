@@ -10,14 +10,14 @@
   // 1. DATOS DE LOS 6 DÍAS DE ENTRENAMIENTO OFICIALES JPEREZCOACH
   var DIAS_ENTRENAMIENTO = (window.JP_DATOS && window.JP_DATOS.DIAS_ENTRENAMIENTO) ?
     window.JP_DATOS.DIAS_ENTRENAMIENTO :
-    (window.CGM_DATOS && window.CGM_DATOS.DIAS_ENTRENAMIENTO) ?
-    window.CGM_DATOS.DIAS_ENTRENAMIENTO : {};
+    (window.JP_DATOS && window.JP_DATOS.DIAS_ENTRENAMIENTO) ?
+    window.JP_DATOS.DIAS_ENTRENAMIENTO : {};
 
   // Secuencia rotativa ordenada de 6 días
   var SECUENCIA_ROTATIVA = (window.JP_DATOS && window.JP_DATOS.SECUENCIA_CICLO) ?
     window.JP_DATOS.SECUENCIA_CICLO :
-    (window.CGM_DATOS && window.CGM_DATOS.SECUENCIA_CICLO) ?
-    window.CGM_DATOS.SECUENCIA_CICLO : [];
+    (window.JP_DATOS && window.JP_DATOS.SECUENCIA_CICLO) ?
+    window.JP_DATOS.SECUENCIA_CICLO : [];
 
   // ===========================================================================
   // ALMACENAMIENTO Y ESTADO
@@ -181,10 +181,10 @@
 
   function cargarDatos() {
     try {
-      var h = localStorage.getItem(CLAVES_ALMACENAMIENTO.HISTORIAL) || localStorage.getItem('cgm_workout_history');
+      var h = localStorage.getItem(CLAVES_ALMACENAMIENTO.HISTORIAL) || localStorage.getItem('jp_workout_history');
       if (h) estado.historial = JSON.parse(h);
 
-      var r = localStorage.getItem(CLAVES_ALMACENAMIENTO.RECORDS) || localStorage.getItem('cgm_personal_records');
+      var r = localStorage.getItem(CLAVES_ALMACENAMIENTO.RECORDS) || localStorage.getItem('jp_personal_records');
       if (r) estado.records = JSON.parse(r);
 
       var a = localStorage.getItem(CLAVES_ALMACENAMIENTO.AJUSTES);
@@ -275,11 +275,11 @@
   }
 
   // ===========================================================================
-  // GESTIÓN DE PLANTILLAS Y ROTACIÓN (OFICIAL CGM O RUTINAS PERSONALIZADAS)
+  // GESTIÓN DE PLANTILLAS Y ROTACIÓN (OFICIAL JOSE PEREZ O RUTINAS PERSONALIZADAS)
   // ===========================================================================
   function obtenerPlantillaDiasActual() {
-    if (window.CGM_RUTINAS_PERSONALIZADAS && typeof window.CGM_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva === 'function') {
-      var plantilla = window.CGM_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva();
+    if (window.JP_RUTINAS_PERSONALIZADAS && typeof window.JP_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva === 'function') {
+      var plantilla = window.JP_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva();
       if (plantilla && Object.keys(plantilla).length > 0) {
         return plantilla;
       }
@@ -288,14 +288,14 @@
   }
 
   function obtenerSecuenciaActiva() {
-    var rutinaActivaId = (window.CGM_RUTINAS_PERSONALIZADAS && window.CGM_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId) ?
-      window.CGM_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId() : 'oficial_jperez';
+    var rutinaActivaId = (window.JP_RUTINAS_PERSONALIZADAS && window.JP_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId) ?
+      window.JP_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId() : 'oficial_jperez';
 
-    if (rutinaActivaId === 'oficial_jperez' || !window.CGM_RUTINAS_PERSONALIZADAS) {
+    if (rutinaActivaId === 'oficial_jperez' || !window.JP_RUTINAS_PERSONALIZADAS) {
       return SECUENCIA_ROTATIVA;
     }
 
-    var plantilla = window.CGM_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva(rutinaActivaId);
+    var plantilla = window.JP_RUTINAS_PERSONALIZADAS.obtenerPlantillaDiasActiva(rutinaActivaId);
     if (!plantilla) {
       return SECUENCIA_ROTATIVA;
     }
@@ -436,8 +436,8 @@
       if (!confirm('Tienes una sesión de ' + estado.entrenamientoActivo.titulo + ' en curso. ¿Deseas descartarla y empezar ' + plantilla.titulo + '?')) return;
     }
 
-    var rutinaActivaId = (window.CGM_RUTINAS_PERSONALIZADAS && window.CGM_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId) ?
-      window.CGM_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId() : 'oficial_jperez';
+    var rutinaActivaId = (window.JP_RUTINAS_PERSONALIZADAS && window.JP_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId) ?
+      window.JP_RUTINAS_PERSONALIZADAS.obtenerRutinaActivaId() : 'oficial_jperez';
 
     // Buscar sesión anterior para autocompletar pesos previos
     var sesionAnterior = null;
@@ -839,7 +839,7 @@
   }
 
   // ===========================================================================
-  // CONTROLADOR DEL TECLADO TÁCTIL DE GIMNASIO (CGM SMART KEYPAD)
+  // CONTROLADOR DEL TECLADO TÁCTIL DE GIMNASIO (JP SMART KEYPAD)
   // Permite ingresar peso y reps con 1 toque o steppers sin abrir teclado del móvil
   // ===========================================================================
 
@@ -1523,10 +1523,10 @@
 
     // Buscar en la Base de Datos Maestra de ejercicios
     var matchBD = null;
-    if (window.CGM_BASE_DATOS_EJERCICIOS && window.CGM_BASE_DATOS_EJERCICIOS.buscar) {
-      if (dbId) matchBD = window.CGM_BASE_DATOS_EJERCICIOS.buscar(dbId);
-      if (!matchBD && exId) matchBD = window.CGM_BASE_DATOS_EJERCICIOS.buscar(exId);
-      if (!matchBD && exNombre) matchBD = window.CGM_BASE_DATOS_EJERCICIOS.buscar(exNombre);
+    if (window.JP_BASE_DATOS_EJERCICIOS && window.JP_BASE_DATOS_EJERCICIOS.buscar) {
+      if (dbId) matchBD = window.JP_BASE_DATOS_EJERCICIOS.buscar(dbId);
+      if (!matchBD && exId) matchBD = window.JP_BASE_DATOS_EJERCICIOS.buscar(exId);
+      if (!matchBD && exNombre) matchBD = window.JP_BASE_DATOS_EJERCICIOS.buscar(exNombre);
     }
 
     var nombreFinal = exNombre || (matchBD ? matchBD.nombre : 'Técnica del Ejercicio');
@@ -1609,10 +1609,10 @@
   // ===========================================================================
   function renderizarCatalogoBD(filtroTexto, filtroGrupo) {
     var contenedor = $('dbExercisesList');
-    if (!contenedor || !window.CGM_BASE_DATOS_EJERCICIOS) return;
+    if (!contenedor || !window.JP_BASE_DATOS_EJERCICIOS) return;
 
-    var lista = window.CGM_BASE_DATOS_EJERCICIOS.lista;
-    var stats = window.CGM_BASE_DATOS_EJERCICIOS.estadisticas();
+    var lista = window.JP_BASE_DATOS_EJERCICIOS.lista;
+    var stats = window.JP_BASE_DATOS_EJERCICIOS.estadisticas();
 
     var elTotal = $('dbTotalCount');
     var elReady = $('dbReadyCount');
@@ -1687,7 +1687,7 @@
     if (badge) badge.textContent = estado.historial.length + ' sesiones';
 
     if (estado.historial.length === 0) {
-      contenedor.innerHTML = '<div class="cgm-card text-center" style="padding:28px 16px"><p style="color:var(--text-dim);font-size:13px">No hay entrenamientos guardados todavía.</p></div>';
+      contenedor.innerHTML = '<div class="jp-card text-center" style="padding:28px 16px"><p style="color:var(--text-dim);font-size:13px">No hay entrenamientos guardados todavía.</p></div>';
       return;
     }
 
@@ -2073,7 +2073,7 @@
     var porcentajes = [
       { pct: 100, reps: '1 rep', desc: 'Fuerza Máxima (1RM)' },
       { pct: 95, reps: '2 reps', desc: 'Fuerza Pico' },
-      { pct: 90, reps: '3-4 reps', desc: 'Serie Pesada CGM' },
+      { pct: 90, reps: '3-4 reps', desc: 'Serie Pesada JPEREZ' },
       { pct: 85, reps: '5-6 reps', desc: 'Fuerza-Hipertrofia' },
       { pct: 80, reps: '8-10 reps', desc: 'Serie Descarga (-20%)' },
       { pct: 75, reps: '10-12 reps', desc: 'Hipertrofia Clásica' },
@@ -2375,7 +2375,7 @@
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
-    a.download = 'cgm-entreno-copia-' + new Date().toISOString().split('T')[0] + '.json';
+    a.download = 'jperez-entreno-copia-' + new Date().toISOString().split('T')[0] + '.json';
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -2445,7 +2445,7 @@
   }
 
   // Exponer recarga visual cuando cambia la rutina seleccionada
-  window.cgmRecargarRutinaVisual = function() {
+  window.jpRecargarRutinaVisual = function() {
     try { dibujarDiasDirectos(); } catch (e) { console.error(e); }
     try { mostrarSiguienteEntrenamiento(); } catch (e) { console.error(e); }
     try { dibujarSecuenciaCiclo(); } catch (e) { console.error(e); }

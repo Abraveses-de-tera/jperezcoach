@@ -613,7 +613,7 @@
     return rutina;
   }
 
-  window.CGM_PDF_RUTINA_PARSER = {
+  window.JP_PDF_RUTINA_PARSER = {
     parsear: parsearRutinaDesdePDF,
     analizarLineas: analizarEstructuraRutina,
     buscarCoincidencia: buscarCoincidenciaEnBD,
@@ -622,4 +622,4 @@
 
 })(typeof window !== 'undefined' ? window : this);
 
-window.CGM_PDF_PARSER = window.JP_PDF_PARSER;
+window.JPEREZ_PDF_PARSER = window.JP_PDF_PARSER;
