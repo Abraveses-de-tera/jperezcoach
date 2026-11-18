@@ -51,7 +51,9 @@ try {
             $response.Headers.Add("Expires", "0")
             $bytes = [System.IO.File]::ReadAllBytes($filePath)
             $response.ContentLength64 = $bytes.Length
-            $response.OutputStream.Write($bytes, 0, $bytes.Length)
+            if ($request.HttpMethod -ne "HEAD") {
+                $response.OutputStream.Write($bytes, 0, $bytes.Length)
+            }
         } else {
             $response.StatusCode = 404
             $msg = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found")
